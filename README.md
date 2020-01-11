@@ -18,6 +18,7 @@ HTML
 CSS
 JQuery
 Javascript
+スマホ対応(レスポンシブデザイン)
 
 ●バックエンド
 python  3.7
