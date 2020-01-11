@@ -1,0 +1,125 @@
+{% extends "fruit/base.html" %}
+{% block content %}
+{% load static %}
+{% bootstrap_css %}
+{% load humanize %}
+
+<div class="cart-items-container">
+	<div class="cart-items-containts">
+		<h1>注文内容を確認する</h1>
+		<div class="cart-table">
+			{% if user.cart.cart_items.all %}
+			<p class="cart-item-exist">以下の内容で間違いなければ注文を確定するボタンを押してください</p>
+			{% else %}
+			<p class="cart-item-exist">ショッピングカートには商品が入っていません。</p>
+			{% endif %}
+			<div class="shopping-items-info">
+				<div class="shopping-items-delivery-info">
+					<h2>お届け先<a href="{% url 'fruit:edit_user' user.pk %}"><span>変更する</span></a></h2>
+					<div>
+						<div>{{ user.name_dlv }} 様</div>
+						<div>〒 {{ user.postal_code_dlv1 }} - {{ user.postal_code_dlv2 }}</div>
+						<div>{{ user.address_dlv1 }} {{ user.address_dlv2 }}</div>
+						<div>{{ user.address_dlv3 }}</div>
+						<div>TEL: {{ user.tel_number_dlv1 }} - {{ user.tel_number_dlv2 }} - {{ user.tel_number_dlv3 }}
+						</div>
+					</div>
+				</div>
+				<div class="shopping-items-payment-method">
+					<h2>お支払い方法</h2>
+					<div>
+						現在クレジットカード払いのみ承っております
+					</div>
+				</div>
+				<div class="shopping-items">
+					<h2>お買い上げ商品</h2>
+				</div>
+			</div>
+			<table class="cart-items cart-items-confirm">
+				<tbody>
+					<tr>
+						{% if user.cart.cart_items.all %}
+						<th>商品</th>
+						<th>価格</th>
+						<th>数量</th>
+						<th class="cart-th-1">金額・数量</th>
+						<th>小計</th>
+						{% endif %}
+					</tr>
+					{% for cart_item in user.cart.cart_items.all %}
+					<tr>
+						<td class="table-item-name">
+							<div class="cart-item-thumbnail">
+								<div>
+									{% if cart_item.product.product_image %}
+									<img src="{{ cart_item.product.small.url }}">
+									{% else %}
+									<img src="{% static 'no_image_small.jpg' %}">
+									{% endif %}
+								</div>
+								<div class="table-content-description">
+									<div>{{ cart_item.product.product_origin }}</div>
+									<div>{{ cart_item.product.farm.farm_name }}</div>
+									<div>{{ cart_item.product.product_name }}</div>
+								</div>
+							</div>
+						</td>
+						<td><span class="price-num">{{ cart_item.product.product_price | intcomma }}</span>円<span
+								class="tax">(税込)</span></td>
+						<td class="cart-td-1 cart-td-cofirm-1">
+							<span class="price-num">単価: {{ cart_item.product.product_price | intcomma }}</span>円<span
+								class="tax">(税込)</span><br>
+							<span class="cart-confirm-num-1">数量: {{ cart_item.amount }}</span><br>
+							<span class="price-subtotal">小計: {{ cart_item.sub_total_amount | intcomma }}</span>円<span
+								class="tax">(税込)</span>
+						</td>
+						<td>{{ cart_item.amount }}</td>
+						<td><span class="price-subtotal">{{ cart_item.sub_total_amount | intcomma }}</span>円<span
+								class="tax">(税込)</span></td>
+					</tr>
+					{% endfor %}
+				</tbody>
+			</table>
+			<div class="total-price">
+				<div class="table-total" id="table-total-confirm">
+					{% if object.cart_items.all %}
+					<p>ご注文合計金額:</p>
+					<div><span class="total-amount">{{ object.total_amount | intcomma }}</span>円<span
+							class="tax">(税込)</span></div>
+					{% endif%}
+				</div>
+			</div>
+		</div>
+		{% if object.cart_items.all %}
+		<div class="stripe-button" onmouseover="explanation_over();" onmouseout="explanation_out();">
+			<form action="" method="POST">
+				<script src="https://checkout.stripe.com/checkout.js" class="stripe-button" data-key="{{ publick_key }}"
+					data-amount="{{ object.total_amount }}" data-name="fruits.com"
+					data-image="https://stripe.com/img/documentation/checkout/marketplace.png" data-locale="ja"
+					data-currency="jpy" data-email="{{ user.email }}">
+					</script>
+				{% csrf_token %}
+			</form>
+		</div>
+		{% endif%}
+		<div id="explanation"></div>
+	</div>
+</div>
+<script type="text/javascript">
+	function explanation_over() {
+		const target = document.getElementById('explanation');
+		//OVER
+		target.innerText = "「Pay with Card」ボタンを押す > カード番号(4242 4242 4242 4242 テスト用の番号) > 年月(12/2022 など適当な将来の日付) > CVC(123 など適当な3桁の数字) を入力 > 「〜円を支払う」ボタンを押す  で決済処理をデモ画面で試すことができます。    また、注文内容はマイページ > 「注文履歴」で確認できます。";
+		target.style.border = 'solid 4px rgb(55, 196, 85)';
+		target.style.padding = '7px';
+		target.style.fontWeight = 'bold';
+	}
+	function explanation_out() {
+		const target = document.getElementById('explanation');
+		//OUT
+		target.style.border = 'none';
+		target.style.padding = '0px';
+		target.innerText = "";
+	}
+</script>
+{% endblock %}

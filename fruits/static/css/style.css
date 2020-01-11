@@ -1,0 +1,2907 @@
+/* 全般 base.html */
+html {
+	height: 100%;
+}
+
+body {
+	color: #383838;
+	font: normal 14px "ヒラギノ角ゴ ProN W3", "Hiragino Kaku Gothic ProN", "メイリオ", Meiryo, "Lucida Grande", Verdana, "ＭＳ Ｐゴシック", sans-serif;
+	background-color: #f7fafd;
+	margin: 0;
+	height: 100%;
+}
+
+p {
+	margin: 0;
+}
+
+a:hover {
+	opacity: 0.6;
+	text-decoration: none !important;
+}
+
+a:visited {
+  color: #383838;
+}
+
+a {
+	text-decoration: none;
+}
+
+textarea {
+    resize: none !important;
+}
+
+ul {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
+
+h2 {
+	margin: 0;
+}
+
+@media screen and (min-width:960px) {
+	.site-container {
+		min-width: 960px;
+		margin-left: auto;
+		margin-right: auto;
+		min-height: 100%;
+		position:relative;
+	}
+}
+
+@media screen and (min-width: 560px) and (max-width:960px)  {
+	.site-container {
+		min-width: 560px;
+		margin-left: auto;
+		margin-right: auto;
+		min-height: 100%;
+		position:relative;
+	}
+}   
+
+@media screen and (max-width: 560px) {
+	.site-container {
+		min-width: 360px;
+		margin-left: auto;
+		margin-right: auto;
+		min-height: 100%;
+		position:relative;
+	}
+}
+
+/* メッセージ base.html */
+.messages {
+	width: 100%;
+	text-align: center;
+	background-color: rgba(68, 247, 184, 0.8);
+	min-height: 70px;
+	font-size: 20px;
+	font-weight: bold;
+	position: absolute;
+}
+
+.messages li {
+	margin-top: 20px;
+}
+
+
+/* ヘッダー base.html */
+.member-menu a:last-child {
+	margin-right: 0px;
+}
+
+.no-display {
+	color: #f7fafd;
+}
+
+.fa-shopping-cart, .fa-apple-alt {
+	color: rgb(55, 196, 85);
+}
+
+@media screen and (min-width:960px) {
+	.member-menu a {
+		margin-top: auto;
+		margin-right: 20px;
+	}
+	.header-container {
+		min-height: 70px;
+		max-width: 70%;
+		margin: 0 auto;
+		margin-top: 10px;
+		position: relative;
+	}
+	.header-container header {
+		display: flex;
+		justify-content: space-between;
+		vertical-align: bottom;
+	}
+	.member-menu {
+		font-size: 13px;
+		font-weight: bold;
+		display: flex;
+		justify-content: flex-end;
+	}
+	.user-mypage-button, .sign-in-wrapper, .log-in-wrapper {
+		color: white;
+		background-color: rgb(55, 196, 85);
+		display: block;
+		font-size: 16px;
+		border: solid 3px rgb(55, 196, 85);
+		padding: 3px 20px;
+		border-radius:4px;
+	}
+	.member-menu small {
+		font-weight: bold;
+		font-size: 100%;
+	}
+	.cart-link {
+		font-size: 100%;
+		position: relative;
+	}
+	.cart-small-link, .cart-small, .cart-middle {
+		display: none;
+	}
+}
+
+@media screen and (min-width: 560px) and (max-width:960px)  {
+	.member-menu a {
+		margin-top: auto;
+		margin-right: 20px;
+	}
+	.header-container {
+		min-height: 70px;
+		max-width: 70%;
+		margin: 0 auto;
+		margin-top: 10px;
+		position: relative;
+	}
+    .header-container header {
+		display: block;
+	}
+	.member-menu {
+		font-size: 13px;
+		font-weight: bold;
+		display: flex;
+		justify-content: center;
+		margin-bottom: 25px;
+	}
+	.menu-container {
+		width: 100%;
+	}
+	.logo {
+		text-align: center;
+		margin-bottom: 0;
+	}
+	.user-mypage-button, .sign-in-wrapper, .log-in-wrapper {
+		color: white;
+		background-color: rgb(55, 196, 85);
+		display: block;
+		font-size: 16px;
+		border: solid 3px rgb(55, 196, 85);
+		padding: 3px 20px;
+		border-radius:4px;
+	}
+	.member-menu small {
+		font-weight: bold;
+	}
+	.cart-link {
+		font-size: 12px;
+		position: relative;
+	}
+	.cart-small-link, .cart-small, .cart-large {
+		display: none;
+	}
+}   
+
+@media screen and (max-width: 560px) {
+	.member-menu a {
+		margin-top: auto;
+	}
+	.logo-container {
+		display: flex;
+		justify-content: center;
+	}
+	.header-container {
+		min-height: 70px;
+		max-width: 100%;
+		margin: 0 auto;
+		margin-top: 10px;
+		position: relative;
+	}
+  　.header-container header {
+		display: block;
+	}
+	.member-menu {
+		font-weight: bold;
+		display: flex;
+		justify-content: center;
+		margin-bottom: 25px;
+	}
+	.logo {
+		text-align: center;
+		margin-bottom: 0;
+	}
+	.user-mypage-button, .sign-in-wrapper, .log-in-wrapper {
+		color: white;
+		background-color: rgb(55, 196, 85);
+		display: block;
+		border: solid 3px rgb(238, 255, 248);
+		padding: 3px 20px;
+		border-radius:2px;
+		text-align: center;
+		width: 180px;
+	}
+	.member-menu small {
+		font-weight: bold;
+	}
+	.cart-link {
+		font-size: 9px;
+		position: relative;
+		display: none;
+	}
+	.cart-link span {
+		position: absolute;
+		font-weight: bold;
+		left: 22px;
+		color: white;
+		top: 6px;
+		text-align: center;
+	}
+	.cart-middle, .cart-large {
+		display: none;
+	}
+	.fa-2x {
+		margin-top: 18px;
+		margin-left: 11px;
+	}
+}
+
+
+/* メインイメージ list.html */
+.main-visual {
+	margin-bottom: 15px;
+}
+
+.main-visual-content {
+	position: relative;
+	text-align: center;
+	background-color: rgb(225, 238, 244);
+}
+
+.sell-fruit-button:hover {
+	background-color: rgb(187, 238, 197);
+	border: solid 3px rgb(187, 238, 197);
+	opacity: 0.95;
+}
+
+.sell-fruit-button span {
+	color: white;
+}
+
+@media screen and (min-width:960px) {
+	.main-image {
+		background-image: url("../top_image/grapes.jpg");
+		background-size: cover;
+		background-repeat:  no-repeat;
+		background-position: center;
+		width: 100%;
+		height: 400px;   
+	}
+	.title {
+		position: absolute;
+		left: 50%;
+		bottom: 50%;
+		opacity: 0.8;
+		margin-left: -349px;
+		margin-bottom: -55px;
+		color: white;
+		opacity: 1;
+		text-shadow: 1px 1px 2px #807c7c;
+	}
+	.main-title {
+		font-size: 35px;
+		font-weight: bold;
+		margin-bottom: 0;
+		opacity: 1;
+	}
+	.sub-title {
+		font-size: 20px;
+	}
+	.sell-fruit-button {
+		font-weight: bold;
+		margin: 0 auto;
+		max-width: 250px;
+		background-color: rgb(55, 196, 85);
+		display: block;
+		font-size: 18px;
+		border: solid 3px rgb(55, 196, 85);
+		padding: 6px 20px;
+		border-radius: 4px;
+		margin-top: 30px;
+	}
+	.title-2 {
+		display: none;
+	}
+}
+
+@media screen and (min-width: 560px) and (max-width:960px)  {
+	.main-image {
+		background-image: url("../top_image/grapes.jpg");
+		background-size: cover;
+		background-repeat: no-repeat;
+		background-position: center;
+		width: 100%;
+		height: 350px;   
+	}
+	.title {
+		position: absolute;
+		left: 50%;
+		bottom: 50%;
+		opacity: 0.8;
+		margin-left: -280px;
+		margin-bottom: -60px;
+		color: white;
+		opacity: 1;
+		text-shadow: 1px 1px 2px #807c7c;
+	}
+	.main-title {
+		font-size: 28px;
+		font-weight: bold;
+		margin-bottom: 0;
+		opacity: 1;
+	}
+	.sub-title {
+		font-size: 18px;
+	}
+	.sell-fruit-button {
+		font-weight: bold;
+		margin: 0 auto;
+		max-width: 170px;
+		background-color: rgb(55, 196, 85);
+		display: block;
+		font-size: 13px;
+		border: solid 3px rgb(55, 196, 85);
+		padding: 6px 20px;
+		border-radius: 4px;
+		margin-top: 30px;
+	}
+	.title-2 {
+		display: none;
+	}
+}   
+
+@media screen and (max-width: 560px) {
+	.main-image {
+		background-image: url("../top_image/grapes.jpg");
+		background-size: cover;
+		background-repeat: no-repeat;
+		background-position: center;
+		width: 100%;
+		height: 350px;   
+	}
+	.title {
+		position: absolute;
+		left: 50%;
+		bottom: 50%;
+		opacity: 0.8;
+		margin-left: -165px;
+		margin-bottom: -60px;
+		color: white;
+		opacity: 1;
+		text-shadow: 1px 1px 2px #807c7c;
+	}
+	.main-title {
+		font-size: 26px;
+		font-weight: bold;
+		margin-bottom: 0;
+		opacity: 1;
+	}
+	.sub-title {
+		font-size: 18px;
+	}
+	.sell-fruit-button {
+		font-weight: bold;
+		margin: 0 auto;
+		width: 180px;
+		font-size: 14px;
+		background-color: rgb(55, 196, 85);
+		display: block;
+		border: solid 3px rgb(55, 196, 85);
+		padding: 6px 20px;
+		border-radius: 2px;
+		margin-top: 30px;
+	}
+	.title-1 {
+		display: none;
+	}
+}
+
+/* ページネーション list.html */
+.pagination {
+	margin: 30px 0 !important;
+}
+
+.pagination>.active>a {     
+  background: rgb(55, 196, 85)!important;
+  border-color: rgb(55, 196, 85)!important;
+}
+
+/* サーチ list.html*/
+.search {
+	display: flexbox;
+	text-align: center;
+}
+
+input::placeholder {
+  color: rgb(199, 192, 192);
+}
+
+#search-button:hover {
+	opacity: 0.8;
+}
+
+@media screen and (min-width:960px) {
+	input[id="fruit-search"] {
+		padding: 5px 20px 5px 40px;
+		border: none;
+		border-radius: 20px 0 0 20px;
+		font-size: 16px;
+		border: 3px solid rgb(55, 196, 85);
+		box-sizing: border-box;
+		background: url("../search-solid.svg") no-repeat left 8px center;
+		background-size: 26px;
+		min-width: 50%;
+	}
+	#search-button{
+		padding: 5px 20px;
+		border: none;
+		border-radius: 0 20px 20px 0;
+		font-size: 16px;
+		background-color: rgb(55, 196, 85);
+		color: white;
+		border: 3px solid rgb(55, 196, 85);
+		font-weight: bold;
+		box-sizing: border-box;
+		max-width: 50%;
+	}
+}
+
+@media screen and (min-width: 560px) and (max-width:960px)  {
+	input[id="fruit-search"] {
+		padding: 5px 20px 5px 40px;
+		border: none;
+		border-radius: 20px 0 0 20px;
+		font-size: 20px;
+		border: 3px solid rgb(55, 196, 85);
+		box-sizing: border-box;
+		background: url("../search-solid.svg") no-repeat left 8px center;
+		background-size: 26px;
+		min-width: 70%;
+	}
+	#search-button{
+		padding: 5px 20px;
+		border: none;
+		border-radius: 0 20px 20px 0;
+		font-size: 20px;
+		background-color: rgb(55, 196, 85);
+		color: white;
+		border: 3px solid rgb(55, 196, 85);
+		font-weight: bold;
+		box-sizing: border-box;
+		max-width: 30%;
+	}
+}   
+
+@media screen and (max-width: 560px) {
+	input[id="fruit-search"] {
+		padding: 5px 20px 5px 40px;
+		border: none;
+		border-radius: 20px 0 0 20px;
+		font-size: 18px;
+		border: 3px solid rgb(55, 196, 85);
+		box-sizing: border-box;
+		background: url("../search-solid.svg") no-repeat left 8px center;
+		background-size: 26px;
+		min-width: 65%;
+	}
+	#search-button{
+		padding: 5px;
+		border: none;
+		border-radius: 0 20px 20px 0;
+		font-size: 18px;
+		background-color: rgb(55, 196, 85);
+		color: white;
+		border: 3px solid rgb(55, 196, 85);
+		font-weight: bold;
+		box-sizing: border-box;
+		max-width: 20%;
+	}
+}
+
+
+/* メインコンテンツ list.html */
+.main-contents-wrapper {
+	overflow: hidden;
+}
+
+.detail-description-words {
+	word-break: break-all;
+}
+
+@media screen and (min-width:960px) {
+  .detail {
+		float: left;
+		width: 25%;
+		padding: 20px;
+		box-sizing: border-box;
+		word-wrap: break-word;
+		border-radius: 3px;
+	}
+}
+
+@media screen and (min-width: 560px) and (max-width:960px)  {
+    .detail {
+		float: left;
+		width: 50%;
+		padding: 20px;
+		box-sizing: border-box;
+		word-wrap: break-word;
+		border-radius: 3px;
+	}
+}   
+
+@media screen and (max-width: 560px) {
+  .detail {
+		float: left;
+		width: 100%;
+		padding: 20px;
+		box-sizing: border-box;
+		word-wrap: break-word;
+		border-radius: 3px;
+	}
+}
+
+.detail img {
+	width:100%;
+	height:auto;
+}
+
+.detail-image-content {
+	position: relative;
+}
+
+.detail-image-content:hover {
+	opacity: 0.8;
+}
+
+.price {
+	position: absolute;
+	right: 0px;
+	bottom: 0px;
+	font-weight: bold;
+	width: 100%;
+	background-color: rgb(228, 241, 245);
+	opacity: 0.8;
+	text-align: right;
+	font-size: 18px;
+	padding: 3px;
+	box-sizing: border-box;
+}
+
+.origin {
+	position: absolute;
+	left: 15px;
+	bottom: 0px;
+	width: 100%;
+	z-index: 10;
+	font-weight: bold;
+	text-align: left;
+	opacity: 0.8;
+	font-size: 16px;
+	padding: 3px;
+	box-sizing: border-box;
+}
+
+.tax {
+	font-size: small;
+}
+
+.product-description {
+	font-size: 15px;
+	text-align: center;
+	background-color: rgb(248, 249, 235);
+	overflow: hidden;
+}
+
+.product-description p {
+	margin-bottom: 5px;
+}
+
+.name {
+	width: 100%;
+	font-weight: bold;
+}
+
+.producer {
+	width: 100%;
+	color: rgb(72, 203, 255);
+	font-weight: bold;
+	margin-top: 5px;
+}
+
+.weight {
+	float: left;
+	width: 50%;
+}
+
+.stock-hold {
+	float: left;
+	width: 50%;
+}
+
+.stock-num {
+	font-weight: bold;
+}
+
+
+/* フッター base.html */
+@media screen and (min-width:960px) {
+	.logo-footer {
+		margin-bottom: 20px;
+	}
+	.logo-footer img {
+		padding-top: 15px;
+		padding-left: 15px;
+	}
+	.main-container {
+		padding-bottom: 330px;
+	}
+	.footer-container {
+		background-color: rgb(242, 255, 202);
+		min-height: 300px;
+		margin-top: 60px;
+		font: 16px;
+		width: 100%;
+		position: absolute;
+		bottom: 0;
+	}
+	.footer-ul {
+		font-size: 18px;
+	}
+	.footer {
+		display: flex;
+		justify-content: space-around;
+	}
+}
+
+@media screen and (min-width: 560px) and (max-width:960px)  {
+	.logo-footer {
+		margin-bottom: 20px;
+	}
+	.logo-footer img {
+		padding-top: 15px;
+		padding-left: 15px;
+	}
+	.main-container {
+		padding-bottom: 330px;
+	}
+	.footer-container {
+		background-color: rgb(242, 255, 202);
+		min-height: 300px;
+		margin-top: 60px;
+		font: 14px;
+		width: 100%;
+		position: absolute;
+		bottom: 0;
+	}
+	.footer section h3 {
+		font-size: 20px;
+		font-weight: bold;
+	}
+	.footer-ul {
+		font-size: 14px;
+	}
+	.footer {
+		display: flex;
+		justify-content: space-around;
+	}
+}   
+
+@media screen and (max-width: 560px) {
+	.logo-footer {
+		margin-bottom: 20px;
+		text-align: center;
+	}
+	.logo-footer img {
+		padding-top: 15px;
+	}
+	.main-container {
+		padding-bottom: 440px;
+	}
+	.footer-container {
+		background-color: rgb(242, 255, 202);
+		min-height: 300px;
+		margin-top: 60px;
+		font: 14px;
+		width: 100%;
+		position: absolute;
+		bottom: 0;
+	}
+	.footer-ul {
+		font-size: 14px;
+	}
+	.footer {
+		display: contents;
+	}
+	section h3 {
+		text-align: center;
+	}
+	section li {
+		text-align: center;
+	}
+}
+
+/* ログイン サインアップ パスワード変更・再設定 login.html sign_up.html password_reset_confirm.html password_change.html password_reset.html */
+.justify-content-center {
+	margin-top: 60px;
+}
+
+.font-weight-normal {
+	text-align: center;
+}
+
+.form-content {
+	margin: 20px auto;
+	min-width: 250px;
+	text-align: center;
+}
+
+.auth-signup-form-group {
+	margin-bottom: 20px;
+	text-align: left;
+}
+
+.auth-signup-form-group input {
+	width: 100%;
+}
+
+.auth-signup-submit {
+	width: 70%;
+	display: block;
+    min-height: 40px;
+    border-radius: 4px;
+    background-color: #ff9900;
+    font-size: 18px;
+    font-weight: bold;
+	color: #ffffff;
+	margin: 0 auto;
+	margin-top: 30px;
+}
+
+.auth-signup-form-group label span {
+	margin-left: 9px;
+	background-color: rgb(248, 66, 66);
+	color: white;
+	font-size: small;
+	border-radius: 3px;
+	padding: 3px;
+	vertical-align: top
+}
+@media screen and (min-width:960px) {
+	.col-lg-8 {
+		max-width: 560px!important;
+	}
+	.forget-password {
+		width: 300px;
+		margin: 30px auto 20px auto;
+		color: rgb(68, 68, 68);
+		border-radius: 10px;
+		background-color: rgb(206, 245, 255);
+	}
+	#id_name {
+		width: 100%;
+	}
+}
+
+@media screen and (min-width: 560px) and (max-width:960px)  {
+	.col-lg-8 {
+		max-width: 440px!important;
+	}
+	.forget-password {
+		width: 270px;
+		margin: 30px auto 20px auto;
+		color: rgb(68, 68, 68);
+		border-radius: 10px;
+		background-color: rgb(206, 245, 255);
+	}
+	#id_name {
+		width: 100%;
+	}
+}   
+
+@media screen and (max-width: 560px) {
+	.col-lg-8 {
+		width: 340px!important;
+		padding: 0!important;
+	}
+	.forget-password {
+		width: 270px;
+		margin: 30px auto 20px auto;
+		color: rgb(68, 68, 68);
+		border-radius: 10px;
+		background-color: rgb(206, 245, 255);
+	}
+	.row {
+		margin: 0!important;
+	}
+	.font-weight-normal {
+		font-size: 20px;
+	}
+}
+
+
+/* ショッピングカート cart.html */
+.cart-items-container {
+	max-width: 640px;
+    margin: 0 auto;
+}
+
+.cart-items-container h1 {
+	text-align: center;
+	margin-top: 40px;
+	margin-bottom: 30px;
+}
+
+.cart-item-exist {
+	margin-bottom: 30px;
+	text-align: center;
+}
+
+.cart-items {
+	margin: 0 auto;
+	margin-bottom: 30px;
+	width: 80%;
+}
+
+table {
+	border-collapse: collapse;
+    border-spacing: 0;
+}
+
+.table-item-name {
+	text-align: left!important;
+}
+
+.cart-items .name {
+	display: block;
+}
+
+.cart-table .tax {
+	font-size: 11px;
+}
+
+.num-edit {
+	background-color: rgb(250, 174, 88);
+	border-radius: 3px;
+	margin-left: 15px;
+	color: white;
+	padding: 5px;
+	vertical-align: top
+}
+
+#go-confirm {
+	display: block;
+}
+
+.go-confirm-page a {
+	color: white;
+}
+
+.cart-amount-change-btns {
+	display: flex;
+	justify-content: space-around;
+}
+
+.cart-amount-change-btns button {
+	background-color: rgb(140, 139, 139);
+	border: solid 1px rgb(140, 139, 139);
+	color: white;
+}
+
+.cart-amount-change-btns div {
+	border-top: solid 1px rgb(140, 139, 139);
+	border-bottom: solid 1px rgb(140, 139, 139);
+	width: 100%;
+}
+
+button[name="delete"] {
+	background-color: rgb(140, 139, 139);
+	border: solid 1px rgb(140, 139, 139);
+	color: white;
+	border-radius: 6px;
+}
+
+button[id="cart_minus"] {
+	border-radius: 6px 0 0 6px;
+}
+
+button[id="cart_plus"] {
+	border-radius: 0 6px 6px 0;
+}
+
+@media screen and (min-width:960px) {
+	.cart-th-1, .cart-td-1 {
+		display: none;
+	}
+	.cart-items th {
+		padding: 10px 20px;
+		background: hsl(45, 62%, 95%);
+		text-align: center;
+		font-weight: bold;
+		border: solid rgb(130, 138, 129);
+		border-width: 1px 1px 1px;
+		white-space: nowrap;
+		min-width: 100px;
+	}
+	.cart-items td {
+		padding: 10px;
+		border: solid 1px rgb(130, 138, 129);
+		white-space: nowrap;
+		min-width: 100px;
+		text-align: center;
+	}
+	.go-confirm-page {
+		border-radius: 4px;
+		text-align: center;
+		line-height: 2.2;
+		margin: 0 auto;
+		width: 35%;
+		color: #ffffff;
+		display: block;
+		font-weight: bold;
+		padding: 5px;
+		background-color: #ff9900;
+	}
+	.table-item-name a {
+		display: flex;
+	}
+	.table-item-name img {
+		max-width: 70px;
+		height: auto;
+	}
+	.table-content-description {
+		display: flex;
+		flex-direction: column;
+		flex-wrap: wrap;
+		margin-left: 10px;
+		font-size: 12px;
+	}
+}
+
+@media screen and (min-width: 560px) and (max-width:960px)  {
+	.cart-th-1, .cart-td-1 {
+		display: none;
+	}
+	.cart-items th {
+		padding: 10px 20px;
+		background: hsl(45, 62%, 95%);
+		text-align: center;
+		font-weight: bold;
+		border: solid rgb(130, 138, 129);
+		border-width: 1px 1px 1px;
+		white-space: nowrap;
+		min-width: 100px;
+	}
+	.cart-items td {
+		padding: 10px;
+		border: solid 1px rgb(130, 138, 129);
+		white-space: nowrap;
+		min-width: 100px;
+		text-align: center;
+	}
+	.go-confirm-page {
+		border-radius: 4px;
+		text-align: center;
+		line-height: 2.2;
+		margin: 0 auto;
+		width: 35%;
+		color: #ffffff;
+		display: block;
+		font-weight: bold;
+		padding: 5px;
+		background-color: #ff9900;
+	}
+	.table-item-name a {
+		display: flex;
+	}
+	.table-item-name img {
+		max-width: 70px;
+		height: auto;
+	}
+	.table-content-description {
+		display: flex;
+		flex-direction: column;
+		flex-wrap: wrap;
+		margin-left: 10px;
+		font-size: 12px;
+	}
+}   
+
+@media screen and (max-width: 560px) {
+	.cart-items th:nth-child(2), .cart-items th:nth-child(3), .cart-items th:nth-child(5){
+		display: none;
+	}
+	.cart-items td:nth-child(2),  .cart-items td:nth-child(4), .cart-items td:nth-child(5){
+		display: none;
+	}
+	.cart-amount-change-btns {
+		margin-top: 20px;
+		margin-bottom: 20px;
+	}
+	.cart-items th {
+		padding: 10px 20px;
+		background: hsl(45, 62%, 95%);
+		text-align: center;
+		font-weight: bold;
+		border: solid rgb(130, 138, 129);
+		border-width: 1px 1px 1px;
+		white-space: nowrap;
+		min-width: 100px;
+		font-size: 14px;
+	}
+	.cart-items td {
+		padding: 7px;
+		border: solid 1px rgb(130, 138, 129);
+		white-space: nowrap;
+		min-width: 100px;
+		text-align: center;
+		font-size: 12px;
+	}
+	#go-confirm {
+		font-size: 14px;
+	}
+	.go-confirm-page {
+		border-radius: 4px;
+		text-align: center;
+		line-height: 2.2;
+		margin: 0 auto;
+		width: 50%;
+		color: #ffffff;
+		display: block;
+		font-weight: bold;
+		padding: 5px;
+		background-color: #ff9900;
+		margin-bottom: 30px;
+	}
+	.table-item-name a {
+		display: flex;
+		flex-direction: column;
+		text-align: center;
+	}
+	.table-item-name img {
+		max-width: 70px;
+		height: auto;
+		margin: 0 auto;
+	}
+	.table-content-description {
+		display: flex;
+		flex-direction: column;
+		flex-wrap: wrap;
+		font-size: 12px;
+	}
+}
+
+
+/* ショッピングカート内容確認 cart_confirm.html */
+.shopping-items-info h2 {
+	border-bottom: solid 1px grey;
+}
+
+.shopping-items-info {
+	max-width: 550px;
+	margin: 0 auto;
+}
+
+.shopping-items-delivery-info {
+	margin-bottom: 30px;
+}
+
+.shopping-items-payment-method {
+	margin-bottom: 30px;
+}
+
+.shopping-items-delivery-info span {
+	font-size: 20px;
+	margin-left: 20px;
+	border: solid 1px rgb(55, 196, 85);
+	background-color: rgb(55, 196, 85);
+	color: rgb(255, 255, 255);
+	padding: 5px 10px;
+	line-height: 1.8;
+	vertical-align: top;
+	border-radius: 4px;
+	font-weight: bold;
+}
+
+.shopping-items {
+	margin-bottom: 25px;
+}
+
+.payment-method {
+	margin-bottom: 10px;
+	padding: 10px;
+	margin-left: 70px;
+}
+
+.product-total {
+	color: rgb(184, 50, 50);
+}
+
+#table-total-confirm{
+	width: 35%;
+}
+
+.table-total p {
+	margin-bottom: 0;
+	margin-right: 10px;
+}
+
+.total-price {
+	margin-left: auto;
+	font-size: 18px;
+	font-weight: bold;
+}
+
+.cart-table {
+	padding: 7px;
+}
+
+.shopping-items-delivery-info div  {
+	padding: 5px;
+}
+.shopping-items-payment-method div {
+	padding: 10px;
+}
+
+.shopping-items-delivery-info div:nth-child(5) {
+	padding-bottom: 0px;
+}
+
+.stripe-button {
+	text-align: center;
+	margin-bottom: 30px;
+}
+
+.stripe-button-el span {
+	padding: 16px!important;
+	height: auto!important;
+	font-size: 16px!important;
+	width: 200px!important;
+}
+
+@media screen and (min-width:960px) {
+	.table-total {
+		margin-bottom: 30px;
+		display: flex;
+		justify-content: flex-end;
+		color: rgb(219, 0, 0);
+		border-bottom: solid 1px grey;
+	}
+	#table-total-confirm {
+		width: 100%;
+		font-size: 20px;
+	}
+	.cart-item-thumbnail {
+		display: flex;
+	}
+}
+
+@media screen and (min-width: 560px) and (max-width:960px)  {
+	.table-total {
+		margin-bottom: 30px;
+		display: flex;
+		justify-content: flex-end;
+		color: rgb(219, 0, 0);
+		border-bottom: solid 1px grey;
+	}
+	#table-total-confirm {
+		width: 100%;
+		font-size: 20px;
+	}
+	.cart-item-thumbnail {
+		display: flex;
+	}
+}   
+
+@media screen and (max-width: 560px) {
+	.table-total {
+		margin-bottom: 30px;
+		font-size: 16px;
+		display: flex;
+		justify-content: flex-end;
+		color: rgb(219, 0, 0);
+		border-bottom: solid 1px grey;
+	}
+	.cart-td-1 {
+		flex-direction: column;
+	}
+	#table-total-confirm {
+		width: 100%;
+		justify-content: center;
+		font-size: 20px;
+	}
+	.cart-item-thumbnail {
+		display: flex;
+		flex-direction: column;
+		text-align: center;
+	}
+	.cart-table .cart-td-cofirm-1 {
+		font-size: 14px;
+		line-height: 2.4;
+	}
+}
+
+
+/* 果物の出品 farm_product_register.html */
+.sell-items-container {
+	max-width: 600px;
+    margin: 0 auto;
+    padding: 0 15px;
+}
+
+.sell-items-container h1 {
+	text-align: center;
+	margin-top: 40px;
+	margin-bottom: 30px;
+}
+
+.sell-table h3 {
+	text-align: left;
+	font-weight: bold;
+	font-size: 16px;
+}
+
+.sell-outline {
+	border: solid 1px rgb(173, 171, 168);
+	margin-bottom: 40px;
+	padding: 20px;
+}
+
+.sell-info {
+	text-align: center;
+}
+
+.product-name {
+	margin-top: 10px;
+}
+
+.select-content {
+	margin-bottom: 40px;
+}
+
+.sell-submit {
+	border-style: none;
+    border-radius: 4px;
+    background-color: #ff9900;
+	font-size: 16px;
+	font-weight: bold;
+	border-style: none;
+	color: #ffffff;
+	text-align: center;
+	line-height: 3;
+}
+
+#id_product_price {
+	max-width: 100px;
+}
+
+#id_product_category {
+	max-width: 200px;
+}
+
+#id_product_weight, #id_product_stock {
+	max-width: 80px;
+}
+
+#id_product_origin {
+	max-width: 130px;
+}
+
+#id_product_description {
+	min-height: 200px;
+	vertical-align: top;
+}
+
+.select-content span {
+	margin-left: 9px;
+	background-color: rgb(248, 66, 66);
+	color: white;
+	font-size: small;
+	border-radius: 3px;
+	padding: 3px;
+	vertical-align: top
+}
+
+.sell-submit-content {
+	margin: 0 auto;
+}
+
+
+/* 果物の出品確認画面 farm_product_register_confirm.html */
+.select-content-confirm h3 {
+	margin-bottom: 5px;
+	font-size: 18px;
+	text-align: left;
+}
+
+.select-content-confirm {
+	margin-bottom: 30px;
+}
+
+.select-content-confirm .product-form-value {
+	border: solid 1px rgb(208, 208, 208);
+	border-radius: 4px;
+	min-height: 40px;
+	line-height: 3;
+	word-break: break-all;
+}
+
+.sell-info-confirm {
+	margin: 0 auto;
+	max-width: 400px;
+	padding: 10px;
+}
+
+.sell-submit-content-confirm button {
+	border-style: none;
+    border-radius: 4px;
+	background-color: #ff9900;
+	font-weight: bold;
+	border-style: none;
+	color: #ffffff;
+}
+
+.sell-submit-content-confirm .edit-back {
+	width: 100px;
+}
+
+.sell-submit-content-confirm .edit-confirm {
+	font-size: 100%;
+	min-width: 100px;
+}
+
+.sell-submit-buttons {
+	display: flex;
+	justify-content: space-around;
+}
+
+.sell-table p {
+	text-align: center;
+}
+
+
+/* 商品詳細画面 detail.html */
+.detail-overview {
+	margin: 0 auto;
+	margin-top: 20px;
+	text-align: center;
+	font-size: 18px;
+}
+
+.detail-image {
+	margin: auto 0;
+}
+
+.detail-product-name {
+	margin-top: 0px;
+	margin-bottom: 5px;
+}
+
+.detail-price, .detail-producer {
+	margin-bottom: 15px;
+}
+
+.detail-weight, .detail-origin {
+	margin-bottom: 5px;
+}
+
+.detail-rating {
+	margin-right: 10px;
+	color: rgb(255, 176, 6);
+	font-weight: bold;
+	font-size: 20px;
+}
+
+.detail-stock {
+	margin-bottom: 20px;
+}
+
+.detail-quantity {
+	margin-right: 7px;
+}
+
+.detail-quantity label {
+	vertical-align: top;
+}
+
+.detail-price-num {
+	font-size: 20px;
+	padding-right: 3px;
+}
+
+.detail-weight-num, .detail-stock-num {
+	padding: 3px;
+	font-size: 20px;
+}
+
+.detail-quantity-num {
+	min-height: 30px;
+	min-width: 55px;
+	font-size: 20px;
+}
+
+.out-of-stock {
+	font-weight: bold;
+	color: red;
+}
+
+@media screen and (min-width:960px) {
+	.detail-main {
+		display: flex;
+		justify-content: center;
+		margin-bottom: 40px;
+	}
+	.detail-content {
+		text-align: left;
+		border-top: solid 1px rgb(205, 203, 203);
+		border-bottom: solid 1px rgb(205, 203, 203);
+		max-width: 400px;
+		padding: 20px 0 20px 30px;
+		margin-left: 30px;
+	}
+	.detail-rating-content {
+		display: flex;
+		margin-bottom: 15px;
+	}
+	.detail-put {
+		margin-bottom: 20px;
+		display: flex;
+	}
+	.detail-image img {
+		max-width: 500px;
+		margin: auto;
+	}
+	.detail-description-outline {
+		border-top: solid 1px rgb(205, 203, 203);
+		border-bottom: solid 1px rgb(205, 203, 203);
+		width: 45%;
+		margin: 0 auto;
+		text-align: left;
+		padding: 10px;
+	}
+	.detail-description-content {
+		margin-bottom: 40px;
+	}
+	.detail-cart-button button {
+		background-color: #ff9900;
+		border: none;
+		color: white;
+		padding: 3px;
+		border-radius: 4px;
+		font-size: 16px;
+		font-weight: bold;
+	}
+}
+
+@media screen and (min-width: 560px) and (max-width:960px)  {
+	.detail-main {
+		display: flex;
+		flex-direction: column-reverse;
+		justify-content: center;
+		align-items: center;
+	}
+	.detail-content {
+		text-align: left;
+		border-top: solid 1px rgb(205, 203, 203);
+		border-bottom: solid 1px rgb(205, 203, 203);
+		width: 70%;
+		padding: 20px 20px 20px 30px;
+		margin-bottom: 30px;
+		text-align: center;
+	}
+	.detail-rating-content {
+		margin-bottom: 15px;
+	}
+	.detail-put {
+		display: flex;
+		justify-content: center;
+		margin-bottom: 30px;
+	}
+	.detail-image img {
+		max-width: 500px;
+		margin: auto;
+		margin-bottom: 30px;
+	}
+	.detail-description-outline {
+		border-top: solid 1px rgb(205, 203, 203);
+		border-bottom: solid 1px rgb(205, 203, 203);
+		width: 70%;
+		margin: 0 auto;
+		text-align: left;
+		padding: 10px;
+	}
+	.detail-description-content {
+		margin-bottom: 40px;
+	}
+	.detail-cart-button button {
+		background-color: #ff9900;
+		border: none;
+		color: white;
+		padding: 3px;
+		border-radius: 4px;
+		font-size: 16px;
+		font-weight: bold;
+	}
+}   
+
+@media screen and (max-width: 560px) {
+	.detail-main {
+		display: flex;
+		flex-direction: column-reverse;
+		justify-content: center;
+		align-items: center;
+	}
+	.detail-content {
+		text-align: left;
+		border-top: solid 1px rgb(205, 203, 203);
+		border-bottom: solid 1px rgb(205, 203, 203);
+		width: 100%;
+		padding: 20px 20px 20px 30px;
+		margin-bottom: 30px;
+		text-align: center;
+	}
+	.detail-rating-content {
+		margin-bottom: 15px;
+	}
+	.detail-put {
+		display: flex;
+		justify-content: center;
+		margin-bottom: 30px;
+	}
+	.detail-image img {
+		width: 100%;
+		margin: auto;
+		margin-bottom: 30px;
+	}
+	.detail-description-outline {
+		border-top: solid 1px rgb(205, 203, 203);
+		border-bottom: solid 1px rgb(205, 203, 203);
+		width: 100%;
+		margin: 0 auto;
+		text-align: left;
+		padding: 10px;
+	}
+	.detail-description-content {
+		margin-bottom: 30px;
+	}
+	.detail-cart-button button {
+		background-color: #ff9900;
+		border: none;
+		color: white;
+		padding: 5px;
+		border-radius: 4px;
+		font-size: 16px;
+		font-weight: bold;
+	}
+}
+
+
+/* モーダル */
+.modal .modalTxt {
+  font-size: 20px;
+  font-weight: normal;
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.comment-edit-button {
+	display: flex;
+	justify-content: space-around;
+}
+
+.edit-close, .overwrite {
+	vertical-align: top;
+    background-color: #ff9900;
+    border: none;
+    color: white;
+    padding: 9px;
+    border-radius: 10px;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.edit-close {
+	margin-right: 60px;
+}
+
+@media screen and (min-width:960px) {
+	.modal {
+		display: none;
+		position: absolute;
+		top: 0;
+		right: 0;
+		bottom: 0;
+		left: 0;
+		z-index: 2;
+		width: 60%;
+		height: 30%;
+		padding: 30px;
+		margin: auto;
+		background: rgba(119, 152, 145, 0.3);
+		border-radius: 5px;
+	}
+	.modal textarea {
+		width: 90%;
+		height: 80%;
+		padding: 5px;
+		border: solid 1px rgb(194, 194, 194);
+		margin-bottom: 10px;
+		border-radius: 10px;
+	}
+}
+
+@media screen and (min-width: 560px) and (max-width:960px)  {
+	.modal {
+		display: none;
+		position: absolute;
+		top: 0;
+		right: 0;
+		bottom: 0;
+		left: 0;
+		z-index: 2;
+		width: 90%;
+		height: 30%;
+		padding: 30px;
+		margin: auto;
+		background: rgba(119, 152, 145, 0.3);
+		border-radius: 5px;
+	}
+	.modal textarea {
+		width: 100%;
+		height: 80%;
+		padding: 5px;
+		border: solid 1px rgb(194, 194, 194);
+		margin-bottom: 10px;
+		border-radius: 10px;
+	}
+}   
+
+@media screen and (max-width: 560px) {
+	.modal {
+		display: none;
+		position: absolute;
+		top: 0;
+		right: 0;
+		bottom: 0;
+		left: 0;
+		z-index: 2;
+		width: 100%;
+		height: 40%;
+		padding: 30px;
+		margin: auto;
+		background: rgba(119, 152, 145, 0.3);
+		border-radius: 5px;
+	}
+	.modal textarea {
+		width: 100%;
+		height: 80%;
+		padding: 5px;
+		border: solid 1px rgb(194, 194, 194);
+		margin-bottom: 10px;
+		border-radius: 10px;
+	}
+}
+
+
+/* コメント入力欄 detail.html */
+.detail-comments-outline {
+	max-width: 550px;
+	margin: 0 auto;
+	margin-bottom: 30px;
+	font-size: 16px;
+	padding: 20px;
+	border-radius: 10px;
+	border: 1px solid rgb(194, 194, 194);
+	background-color: rgb(247, 253, 255);
+}
+
+.detail-comments-outline h4{
+	margin-bottom: 15px;
+}
+
+.detail-form-group {
+	margin-bottom: 15px;
+}
+
+.detail-form-group label {
+	display: block;
+	text-align: left;
+}
+
+.detail-form-group input {
+	width: 100%;
+	padding: 5px 5px 5px 5px;
+	border-radius: 5px;
+	border: 1px solid #ccc;
+	height: 25px;
+}
+
+.detail-form-group textarea {
+	width: 100%;
+	padding: 5px;
+	height: 150px;
+	border: solid 1px rgb(194, 194, 194);
+	margin-bottom: 20px;
+	border-radius: 10px;
+}
+
+.rating {
+	color: rgb(255, 176, 6);
+	font-size: 20px;
+}
+
+textarea::placeholder {
+  color: rgb(202, 201, 199);
+}
+
+.comment-submit-button button {
+	vertical-align: top;
+	background-color: #ff9900;
+	border: none;
+	color: white;
+	padding: 9px;
+	border-radius: 10px;
+	font-size: 18px;
+	font-weight: bold;
+}
+
+
+/* コメント本体部分 detail.html */
+.comment-title-rate {
+	display: flex;
+	justify-content: space-between;
+	font-weight: bold;
+	font-size: 16px;
+	line-height: 1.8;
+}
+
+.comment-edit-delete-wrapper {
+	margin-top: 0;
+}
+
+.comment-date {
+	font-size: 12px;
+	margin-right: 20px;
+	line-height: 1.8;
+}
+
+.user-info {
+	background-color: #ff9900;
+	padding: 10px;
+	max-width: 150px;
+	height: 70px;
+	margin: 10px 20px 10px 0;
+}
+
+.icon {
+	padding: 5px;
+	vertical-align: center;
+}
+
+.comments small {
+	margin-right: 20px;
+}
+
+.comment {
+	font-size: 16px;
+	text-align: left;
+	margin-bottom: 10px;
+	word-break: break-all;
+}
+
+@media screen and (min-width:960px) {
+	.comment-outline {
+		display: flex;
+		flex-wrap: wrap;
+		max-width: 800px;
+		justify-content: center;
+		margin: 0 auto;
+	}
+	.comment-wrapper {
+		display: flex;
+		border-top: solid 1px rgb(205, 203, 203);
+		border-bottom: solid 1px rgb(205, 203, 203);
+		margin-bottom: 20px;
+		width: 80%;
+	}
+	.comment-2 {
+		display: flex;
+	}
+	.comment-3 {
+		display: flex;
+	}
+	.comment-name-star-wrapper {
+		display: flex;
+		margin-bottom: 5px;
+		margin-top: 5px;
+	}
+	.comment-2 {
+		display: flex;
+	}
+	.comment-3 {
+		display: flex;
+	}
+	.comment-edit, .comment-delete {
+		margin-right: 20px;
+		font-size: 14px;
+		margin-top: 0;
+		border-radius: 5px;
+		vertical-align: top;
+		background-color: #2aa346;
+		font-weight: bold;
+		border: none;
+		color: white;
+	}
+	.rating-star {
+		font-size: 16px;
+		margin-right: 20px;
+		color: rgb(255, 176, 6);
+	}
+}
+
+@media screen and (min-width: 560px) and (max-width:960px)  {
+	.comment-outline {
+		display: flex;
+		flex-wrap: wrap;
+		width: 100%;
+		justify-content: center;
+		margin: 0 auto;
+	}
+	.comment-wrapper {
+		display: flex;
+		border-top: solid 1px rgb(205, 203, 203);
+		border-bottom: solid 1px rgb(205, 203, 203);
+		margin-bottom: 20px;
+		height: 100%;
+		min-width: 80%;
+	}
+	.comment-2 {
+		display: flex;
+	}
+	.comment-3 {
+		display: flex;
+	}
+	.comment-name-star-wrapper {
+		display: flex;
+		margin-bottom: 5px;
+		margin-top: 5px;
+	}
+	.comment-edit, .comment-delete {
+		margin-right: 20px;
+		font-size: 12px;
+		margin-top: 0;
+		border-radius: 5px;
+		vertical-align: top;
+		background-color: #2aa346;
+		font-weight: bold;
+		border: none;
+		color: white;
+	}
+	.rating-star {
+		font-size: 12px;
+		margin-right: 20px;
+		color: rgb(255, 176, 6);
+	}
+}   
+
+@media screen and (max-width: 560px) {
+	.comment-outline {
+		display: flex;
+		flex-direction: column;
+		flex-wrap: wrap;
+		width: 100%;
+		margin: 0 auto;
+	}
+	.comment-wrapper {
+		display: flex;
+		border-top: solid 1px rgb(205, 203, 203);
+		border-bottom: solid 1px rgb(205, 203, 203);
+		margin-bottom: 20px;
+		width: 100%;
+		height: 100%;
+	}
+	.comment-name-star-wrapper {
+		margin-top: 5px;
+	}
+	.comment-2 {
+		display: flex;
+	}
+	.comment-3 {
+		display: flex;
+	}
+	.comment-edit, .comment-delete {
+		margin-right: 20px;
+		font-size: 11px;
+		margin-top: 0;
+		border-radius: 5px;
+		vertical-align: top;
+		background-color: #2aa346;
+		font-weight: bold;
+		border: none;
+		color: white;
+	}
+	.rating-star {
+		font-size: 12px;
+		margin-right: 20px;
+		color: rgb(255, 176, 6);
+	}
+}
+
+/* ユーザーマイページ user_mypage.html */
+.mypage-container {
+	margin-top: 60px;
+}
+
+.mypage-outline {
+	max-width: 500px;
+	margin: 0 auto;
+}
+
+.mypage-user {
+	display: flex;
+	margin-bottom: 40px;
+	font-size: 22px;
+}
+
+.my-page-user-icon {
+	margin-right: 10px;
+}
+
+.mypage-outline h2 {
+	margin-bottom: 20px;
+	font-size: 27px;
+	color: rgb(84, 79, 79);
+	padding-bottom: 5px;
+	border-bottom: solid 1px rgb(196, 196, 196);
+}
+
+.account-control {
+	border: solid 1px rgb(126, 126, 126);
+	margin-bottom: 40px;
+	border-radius: 3px;
+	max-width: 400px;
+	margin: 0 auto;
+	margin-bottom: 20px;
+}
+
+.account-control h3 {
+	margin-top: 0;
+	margin-bottom: 0;
+	background-color: rgb(55, 196, 85);
+	padding: 5px;
+	font-weight: bold;
+	color: white;
+}
+
+.account-control p {
+	font-size: 20px;
+	padding: 20px 5px 20px 5px;
+}
+
+/* プロフィール編集画面 user_edit.html 確認画面 user_edit_confirm.html */
+.edit-container {
+	max-width: 800px;
+	margin: 0 auto;
+	margin-bottom: 30px;
+}
+
+.edit-login {
+	margin-bottom: 40px;
+	width: 100%;
+}
+
+.edit-user-table {
+	margin-bottom: 40px;
+	width: 100%;
+}
+
+.edit-proceed {
+	margin: 0 auto;
+}
+
+.mail-change, .password-change {
+	background-color: rgb(30, 141, 54);
+	color: white;
+	font-weight: bold;
+	font-size: small;
+	padding: 4px;
+	border-radius: 4px;
+	vertical-align: 1.5px;
+	margin-left: 7px;
+} 
+
+.address-copy {
+	background-color: rgb(30, 141, 54);
+	color: white;
+	font-weight: bold;
+	font-size: small;
+	padding: 4px;
+	border-radius: 4px;
+	vertical-align: 1.5px;
+	margin-left: 7px;
+}
+
+.edit-username span {
+	margin-left: 9px;
+	background-color: rgb(248, 66, 66);
+	color: white;
+	font-weight: bold;
+	font-size: small;
+	border-radius: 4px;
+	padding: 4px;
+	vertical-align: 3px;
+}
+
+.optional {
+	margin-left: 9px;
+	background-color: rgb(159, 159, 159)!important;
+	color: rgb(255, 255, 255)!important;
+	font-weight: bold;
+	font-size: small;
+	border-radius: 4px;
+	padding: 4px;
+	vertical-align: 3px;
+}
+
+.edit-container th {
+	padding: 10px;
+    border: solid rgb(137, 162, 149);
+    border-width: 1px 0 1px 1px;
+    background-color: rgb(161, 255, 206);
+    font-weight: normal;
+	white-space: nowrap;
+	width: 100%;
+} 
+
+.edit-container input {
+	padding: 2px;
+	font-size: 16px;
+}
+
+.edit-container caption {
+	text-align: left;
+	font-size: 16px;
+}
+
+.edit-head {
+	margin-top: 60px;
+	margin-bottom: 30px;
+}
+
+.edit-head h2, .edit-head p{
+	text-align: center;
+}
+
+/* #id_name, #id_last_name, #id_first_name {
+	max-width: 200px;
+} */
+
+#id_postal_code1, #id_postal_code2, #id_postal_code_dlv1, #id_postal_code_dlv2 {
+	max-width: 80px;
+}
+
+#id_address1, #id_address2, #id_address3, #id_address_dlv1, #id_address_dlv2, #id_address_dlv3 {
+	min-width: 100%;
+}
+
+#id_tel_number1, #id_tel_number2, #id_tel_number3, #id_tel_number_dlv1, #id_tel_number_dlv2, #id_tel_number_dlv3 {
+	max-width: 80px;
+}
+
+.edit-sex ul {
+	margin-bottom: 0;
+}
+
+.edit-confirm {
+	text-align: center;
+	background-color: #ff9900;
+	border: none;
+	color: white;
+	padding: 9px;
+	border-radius: 4px;
+	font-size: 18px;
+	font-weight: bold;
+	min-width: 150px;
+	display: block;
+}
+
+@media screen and (min-width:960px) {
+	.edit-container td {
+		border: solid 1px rgb(137, 162, 149);
+		min-width: 400px;
+		white-space: nowrap;
+	}
+	.edit-email-password td {
+		width: 400px;
+	}
+}
+
+@media screen and (min-width: 560px) and (max-width:960px)  {
+	.edit-container td {
+		border: solid 1px rgb(137, 162, 149);
+		min-width: 400px;
+		white-space: nowrap;
+		padding-left: 7px;
+	}
+	.edit-email-password td {
+		width: 400px;
+	}
+}   
+
+@media screen and (max-width: 560px) {
+	.edit-container td {
+		border: solid 1px rgb(137, 162, 149);
+		width: 100%;
+		white-space: nowrap;
+		padding-left: 7px;
+		height: 45px;
+		padding: 5px;
+	}
+	.edit-container tr {
+		display: flex;
+		flex-direction: column;
+	}
+	.edit-email-password td {
+		width: 100%;
+	}
+
+}
+
+/* プロフィール編集確認画面 user_edit_confirm.html */
+.edit-confirm-back {
+	margin-right: 60px;
+}
+
+@media screen and (min-width:960px) {
+	.edit-confirm-btn {
+		margin: 0 auto 0 auto;
+		text-align: center;
+		background-color: #ff9900;
+		border: none;
+		color: white;
+		padding: 9px;
+		border-radius: 4px;
+		font-size: 18px;
+		font-weight: bold;
+		width: 200px;
+		display: block;
+	}
+	.user-edit-confirm-buttons {
+		display: flex;
+		justify-content: space-evenly;
+	}
+}
+@media screen and (min-width: 560px) and (max-width:960px)  {
+	.edit-confirm-btn {
+		margin: 0 auto 0 auto;
+		text-align: center;
+		background-color: #ff9900;
+		border: none;
+		color: white;
+		padding: 9px;
+		border-radius: 4px;
+		font-size: 18px;
+		font-weight: bold;
+		width: 200px;
+		display: block;
+	}
+	.user-edit-confirm-buttons {
+		display: flex;
+		justify-content: space-evenly;
+	}
+}   
+@media screen and (max-width: 560px) {
+	.edit-confirm-btn {
+		margin: 0 auto 0 auto;
+		text-align: center;
+		background-color: #ff9900;
+		border: none;
+		color: white;
+		padding: 9px;
+		border-radius: 4px;
+		font-size: 18px;
+		font-weight: bold;
+		width: 100px;
+		display: block;
+	}
+	.user-edit-confirm-buttons {
+		display: flex;
+		justify-content: space-evenly;
+	}
+}
+
+
+/* 注文履歴  order_history.html */
+.order-item {
+	background: #fff;
+    padding: 15px 0 0;
+    margin: 15px 0 45px 0;
+    border-radius: 4px;
+}
+
+.order-item table {
+	margin: 0 auto;
+	width: 75%;
+}
+
+.order-info p {
+	margin: 0;
+}
+
+.order-info .left {
+	margin-right: 10px;
+}
+
+.order-info .left, .order-info .right {
+	padding: 10px;
+}
+
+.order-container {
+	margin-top: 30px;
+}
+
+.order-outline {
+	text-align: center;
+}
+
+.order-outline h2 {
+	margin-bottom: 20px;
+}
+
+.order-list-wrapper {
+	margin: 0 auto;
+}
+
+.order-item {
+	padding: 30px;
+}
+
+#order-his-thumbnail img {
+	width: 75px;
+	height: 75px;
+}
+
+.order-box p {
+	margin: 0;
+}
+
+.order-count {
+	font-weight: bold;
+}
+
+@media screen and (min-width:960px) {
+	.order-info {
+		display: flex;
+		justify-content: center;
+	}
+	.order-info .right {
+		border-left: solid 1px gray;
+		padding-left: 20px;
+	}
+	.order-status, .order-num {
+		text-align: left;
+	}
+	.order-box {
+		background-color: rgb(235, 252, 254);
+		padding: 20px;
+		line-height: 1.5;
+		display: flex;
+		justify-content: center;
+		margin: 10px 0;
+	}
+	#order-his-thumbnail {
+		margin-right: 30px;
+	}
+	.order-item-content, .order-count {
+		text-align: left;
+	}
+	.order-history-price {
+		display: flex;
+	}
+	.order-list-wrapper {
+		width: 60%;
+		background: #f0f0f0;
+		border: 1px solid #dcdcdc;
+		border-radius: 4px;
+		padding: 20px 30px 10px 30px;
+	}
+	.order-history-pay {
+		margin: 10px 0 -5px 0;
+		border-top: solid 1px gray;
+		padding: 10px;
+		line-height: 1.5;
+		display: flex;
+		justify-content: center;
+	}
+	.order-history-pay li:first-child {
+		margin-right: 30px;
+	}
+}
+
+@media screen and (min-width: 560px) and (max-width:960px)  {
+	.order-info {
+		display: block;
+		justify-content: left;
+	}
+	.order-info .right {
+		border: none;
+		padding-left: 20px;
+	}
+	.order-status, .order-num {
+		text-align: center;
+	}
+	.order-box {
+		background-color: rgb(235, 252, 254);
+		padding: 20px;
+		line-height: 1.5;
+		display: block;
+		justify-content: center;
+		margin: 10px 0;
+	}
+	#order-his-thumbnail {
+		margin-right: 0px;
+	}
+	.order-item-content, .order-count {
+		text-align: center;
+	}
+	.order-history-price {
+		display: flex;
+		justify-content: center;
+	}
+	.order-list-wrapper {
+		width: 90%;
+		background: #f0f0f0;
+		border: 1px solid #dcdcdc;
+		border-radius: 4px;
+		padding: 20px 30px 10px 30px;
+	}
+	.order-history-pay {
+		margin: 10px 0 -5px 0;
+		border-top: solid 1px gray;
+		padding: 10px;
+		line-height: 1.5;
+		display: block;
+		justify-content: center;
+	}
+	.order-history-pay li:first-child {
+		margin-right: 0px;
+	}
+}   
+
+@media screen and (max-width: 560px) {
+	.order-info {
+		display: block;
+		justify-content: left;
+	}
+	.order-info .right {
+		border: none;
+		padding-left: 20px;
+	}
+	.order-status, .order-num {
+		text-align: center;
+	}
+	.order-box {
+		background-color: rgb(235, 252, 254);
+		padding: 20px;
+		line-height: 1.5;
+		display: block;
+		justify-content: center;
+		margin: 10px 0;
+	}
+	#order-his-thumbnail {
+		margin-right: 0px;
+	}
+	.order-item-content, .order-count {
+		text-align: center;
+	}
+	.order-history-price {
+		display: flex;
+		justify-content: center;
+	}
+	.order-list-wrapper {
+		width: 100%;
+		background: #f0f0f0;
+		border: 1px solid #dcdcdc;
+		border-radius: 4px;
+		padding: 20px 30px 10px 30px;
+	}
+	.order-history-pay {
+		margin: 10px 0 -5px 0;
+		border-top: solid 1px gray;
+		padding: 10px;
+		line-height: 1.5;
+		display: block;
+		justify-content: center;
+	}
+	.order-history-pay li:first-child {
+		margin-right: 0px;
+	}
+}
+
+/* 果物出品情報登録ページ farm_info.html */
+.farm-info-outline h2 {
+	margin-top: 60px;
+	border-bottom: solid 1px rgb(191, 191, 191);
+	max-width: 360px;
+	text-align: center;
+	margin: 0 auto 40px auto;
+}
+
+@media screen and (min-width:960px) {
+}
+
+@media screen and (min-width: 560px) and (max-width:960px)  {
+}   
+
+@media screen and (max-width: 560px) {
+}
+
+/* 農場基本情報登録ページ 変更ページ farm_info_register.html farm_info_change.html */
+.farm_register_form_control{
+	text-align: left;
+}
+
+.farm_register_form_control span {
+	margin-left: 9px;
+	background-color: rgb(248, 66, 66);
+	color: white;
+	font-weight: bold;
+	font-size: small;
+	border-radius: 4px;
+	padding: 4px;
+	vertical-align: 3px;
+}
+
+.farm_register_form_control input {
+	margin-bottom: 30px;
+	line-height: 2;
+	border: 1px solid #ced4da;
+	border-radius: .25rem;
+	font-size: 1rem;
+	width: 100%;
+}
+
+#id_farm_name {
+	max-width: 300px;
+	margin-left: auto;
+}
+
+#id_farmrep_last_name, #id_farmrep_first_name {
+	max-width: 150px;
+	margin-left: auto;
+}
+
+#id_farm_postal_code1, #id_farm_postal_code2, #id_farm_tel_number1, #id_farm_tel_number2, #id_farm_tel_number3, #id_bank_branch_num, #id_bank_branch_name {
+	max-width: 100px;
+}
+
+.farm_register_form_control textarea {
+	margin-bottom: 30px;
+	line-height: 2;
+	border: 1px solid #ced4da;
+	border-radius: .25rem;
+	font-size: 1rem;
+	max-height: 150px;
+	width: 100%;
+}
+
+.farm_register_form_control h3 {
+	margin-bottom: 10px;
+}
+
+.farm-info-table p {
+	margin-bottom: 30px;
+}
+
+@media screen and (min-width:960px) {
+}
+
+@media screen and (min-width: 560px) and (max-width:960px)  {
+}   
+
+@media screen and (max-width: 560px) {
+}
+
+
+/* 農場基本情報確認ページ farm_info_register_confirm.html farm_info_change_confirm.html */
+.farm-info-confirm {
+	margin: 0 auto;
+	max-width: 600px;
+	padding: 10px;
+}
+
+.farm-info-confirm h3 {
+	margin-bottom: 5px;
+    font-size: 18px;
+    text-align: left;
+}
+
+.farm_form-value {
+	border: solid 1px rgb(208, 208, 208);
+    border-radius: 4px;
+    min-height: 40px;
+	line-height: 3;
+	margin-bottom: 30px;
+	word-break: break-all;
+}
+
+.farm-info-confirm-buttons {
+	display: flex;
+	justify-content: center;
+}
+
+.farm-info-confirm-button-left {
+	margin-right: 30px;
+}
+
+@media screen and (min-width:960px) {
+}
+
+@media screen and (min-width: 560px) and (max-width:960px)  {
+}   
+
+@media screen and (max-width: 560px) {
+}
+
+/* 削除ページ farm_product_delete.html farm_info_delete.html user_delete.html */
+.delete-container {
+	margin-top: 60px;
+}
+
+.delete-outline {
+	max-width: 500px;
+	margin: 0 auto;
+}
+
+.delete-container h2 {
+	text-align: center;
+	margin-bottom: 30px;
+}
+
+.delete-container p {
+	text-align: center;
+	font-size: 18px;
+	width: 100%
+}
+
+.delete-container p:last-child {
+	border-bottom: solid 1px rgb(169, 169, 169);
+	font-weight: normal;
+	padding-bottom: 20px;
+}
+
+.delete-warning {
+	margin-bottom: 40px;
+}
+
+.delete-warning span {
+	font-weight: bold;
+}
+
+.delete-items {
+	text-align: center;
+	font-size: 25px;
+	font-weight: bold;
+	margin-bottom: 50px;
+}
+
+.delete-items span {
+	color: red;
+	text-decoration: underline;
+	font-size: 25px;
+}
+
+.delete-buttons button {
+	text-align: center;
+	background-color: #ff9900;
+	border: none;
+	color: white;
+	padding: 9px;
+	border-radius: 4px;
+	font-size: 18px;
+	font-weight: bold;
+	min-width: 150px;
+	display: block;
+}
+
+.delete-no-check {
+	text-align: center;
+}
+
+#delete-button-left {
+	margin-right: 30px;
+	background-color: #ff9900;
+}
+
+@media screen and (min-width:960px) {
+	.delete-buttons {
+		text-align: center;
+		display: flex;
+		justify-content: space-around;
+		margin-top: 60px;
+	}
+}
+
+@media screen and (min-width: 560px) and (max-width:960px)  {
+	.delete-buttons {
+		text-align: center;
+		display: flex;
+		justify-content: space-around;
+		margin-top: 60px;
+	}
+}   
+
+@media screen and (max-width: 560px) {
+	.delete-buttons {
+		text-align: center;
+		display: flex;
+		justify-content: space-around;
+		margin-top: 30px;
+		margin-bottom: 50px;
+	}
+}
+
+/* 処理完了ページ password_change_done.html password_reset_done.html sign_up_done.html password_reset_complete.html */
+.done-complete-content {
+	margin-top: 60px;
+}
+
+.done-complete-outline {
+	text-align: center;
+}
+
+.done-complete-outline h2 {
+	margin-bottom: 30px;
+	font-weight: bold;
+}
+
+.done-complete-outline p {
+	font-size: 24px;
+	text-decoration: underline;
+	margin-bottom: 60px;
+}
+
+.done-complete-outline a {
+	text-align: center;
+	background-color: #ff9900;
+	border: none;
+	color: white;
+	padding: 9px;
+	border-radius: 4px;
+	font-size: 20px;
+	font-weight: bold;
+	min-width: 150px;
+}
+
+@media screen and (min-width:960px) {
+}
+
+@media screen and (min-width: 560px) and (max-width:960px)  {
+}   
+
+@media screen and (max-width: 560px) {
+}
+
+/* 出品果物一覧ページ farm_products_list.html */
+.farm-product-list-container {
+	margin-top: 60px;
+}
+
+.farm-product-list-outline h2, .farm-product-list-outline p {
+	margin-bottom: 30px;
+}
+
+.farm-product-list-outline span {
+	font-weight: bold;
+	font-size: 18px;
+}
+
+.farm-product-list-table img {
+	width: 75px;
+	height: 75px;
+}
+
+.farm-product-list-container form {
+	width: 100%;
+}
+
+@media screen and (min-width:960px) {
+	.farm-product-list-outline {
+		max-width: 760px;
+		margin: 0 auto;
+		text-align: center;
+	}
+	.farm-product-list-table th {
+		padding: 10px 20px;
+		background: hsl(45, 62%, 95%);
+		text-align: center;
+		font-weight: bold;
+		border: solid rgb(130, 138, 129);
+		border-width: 1px 1px 1px;
+		white-space: nowrap;
+		min-width: 100px;
+	}
+	.farm-product-list-table td {
+		padding: 10px;
+		border: solid rgb(130, 138, 129);
+		border-width: 1px 1px 1px;
+		text-align: center;
+	}
+	.farm-product-list-table td:first-child {
+		min-width: 200px;
+	}
+	.farm-product-list-table  {
+		border-collapse: collapse;
+		border-spacing: 0;
+		margin: 30px auto 0 auto;
+		width: 100%;
+	}
+	.farm-product-list-table span {
+		background-color: rgb(55, 196, 85);
+		border: none;
+		color: white;
+		padding: 6px;
+		border-radius: 4px;
+		font-weight: bold;
+	}
+	#farm-product-list-delete-button {
+		background-color: rgb(77, 191, 211);
+		border: none;
+		color: white;
+		padding: 10px;
+		border-radius: 4px;
+		font-weight: bold;
+		margin-top: 40px;
+		margin-left: auto;
+		display: block;
+	}
+}
+
+@media screen and (min-width: 560px) and (max-width:960px)  {
+	.farm-product-list-outline {
+		width: 80%;
+		margin: 0 auto;
+		text-align: center;
+	}
+	.farm-product-list-table th:last-child {
+		display: none;
+	}
+	.farm-product-list-table td:last-child {
+		display: none;
+	}
+	.farm-product-list-table th {
+		padding: 10px 20px;
+		background: hsl(45, 62%, 95%);
+		text-align: center;
+		font-weight: bold;
+		border: solid rgb(130, 138, 129);
+		border-width: 1px 1px 1px;
+		white-space: nowrap;
+	}
+	.farm-product-list-table td {
+		padding: 10px;
+		border: solid rgb(130, 138, 129);
+		border-width: 1px 1px 1px;
+		text-align: center;
+	}
+	.farm-product-list-table td:first-child {
+		min-width: 200px;
+	}
+	.farm-product-list-table  {
+		border-collapse: collapse;
+		border-spacing: 0;
+		margin: 30px auto 0 auto;
+		width: 100%;
+	}
+	.farm-product-list-table span {
+		background-color: rgb(55, 196, 85);
+		border: none;
+		color: white;
+		padding: 6px;
+		border-radius: 4px;
+		font-weight: bold;
+	}
+	#farm-product-list-delete-button {
+		background-color: rgb(77, 191, 211);
+		border: none;
+		color: white;
+		padding: 10px;
+		border-radius: 4px;
+		font-weight: bold;
+		margin-top: 40px;
+		margin-left: auto;
+		display: block;
+	}
+}   
+
+@media screen and (max-width: 560px) {
+	.farm-product-list-outline {
+		width: 100%;
+		margin: 0 auto;
+		text-align: center;
+	}
+	.farm-product-list-table th:last-child {
+		display: none;
+	}
+	.farm-product-list-table td:last-child {
+		display: none;
+	}
+	.farm-product-list-table th {
+		padding: 10px 10px;
+		background: hsl(45, 62%, 95%);
+		text-align: center;
+		font-weight: bold;
+		border: solid rgb(130, 138, 129);
+		border-width: 1px 1px 1px;
+		white-space: nowrap;
+	}
+	.farm-product-list-table td {
+		border: solid rgb(130, 138, 129);
+		border-width: 1px 1px 1px;
+		text-align: center;
+	}
+	.farm-product-list-table  {
+		border-collapse: collapse;
+		border-spacing: 0;
+		margin: 30px auto 0 auto;
+		width: 100%;
+		font-size: 14px;
+	}
+	.farm-product-list-table span {
+		background-color: rgb(55, 196, 85);
+		border: none;
+		color: white;
+		padding: 3px;
+		border-radius: 4px;
+		font-weight: bold;
+		font-size: 12px;
+	}
+	#farm-product-list-delete-button {
+		background-color: rgb(77, 191, 211);
+		border: none;
+		color: white;
+		padding: 10px;
+		border-radius: 4px;
+		font-weight: bold;
+		margin-top: 40px;
+		margin-left: auto;
+		margin-bottom: 30px;
+		display: block;
+	}
+}
+
+/* 出品果物編集ページ farm_product_change.html */
+.farm-product-change-btn {
+	margin-top: 30px;
+}
+
+.farm-product-change-btn-left {
+	margin-right: 30px;
+}
+
+.product-image {
+	word-break: break-all;
+}

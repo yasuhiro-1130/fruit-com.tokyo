@@ -1,0 +1,27 @@
+{% extends "fruit/base.html" %}
+{% block content %}
+{% load static %}
+{% bootstrap_css %}
+<main class="delete-container">
+	<div class="delete-outline">
+		<h2>アカウント情報の削除</h2>
+		<div class="delete-items">
+			<p><span>{{ user.name }}</span>さんのアカウント<br>を削除しますがよろしいですか</p>
+			<p>削除ボタンを押すとユーザー情報に紐づく<br>全ての情報がデータベースから完全に消去されます</p>
+		</div>
+		<div class="delete-buttons">
+			<a href="{% url 'fruit:user_mypage' %}">
+				<button id="delete-button-left">
+					戻る
+				</button>
+			</a>
+			<form method="post">
+				{% csrf_token %}
+				<button type="submit">
+					削除
+				</button>
+			</form>
+		</div>
+	</div>
+</main>
+{% endblock %}

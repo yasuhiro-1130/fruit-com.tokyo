@@ -1,0 +1,64 @@
+{% extends "fruit/base.html" %}
+{% block content %}
+{% load static %}
+{% bootstrap_css %}
+
+<div class="mypage-container farm-info-container">
+	<div class="farm-info-outline">
+		<div>
+			<h2>
+				果物出品情報登録ページ
+			</h2>
+		</div>
+		<div class="edit-myinfo farm-info">
+			{% if user.farm %}
+			<div class="farm-info-row1">
+				<a href="{% url 'fruit:farm_info_change' user.farm.pk %}">
+					<div class="mypage-farm-col1 account-control">
+						<h3>農場基本情報の確認</h3>
+						<p>農場基本情報を確認・変更する</p>
+					</div>
+				</a>
+				<a href="{% url 'fruit:farm_info_delete' user.farm.pk %}">
+					<div class="mypage-farm-col2 account-control">
+						<h3>農場基本情報の削除</h3>
+						<p>農場基本情報を削除する</p>
+					</div>
+				</a>
+			</div>
+			{% else %}
+			<div class="farm-info-row1-no-regist">
+				<a href="{% url 'fruit:farm_info_register' user.pk %}">
+					<div class="mypage-farm-col1 account-control">
+						<h3>農場基本情報の登録</h3>
+						<p>農場基本情報を登録する</p>
+					</div>
+				</a>
+			</div>
+			{% endif %}
+			<div class="farm-info-row2">
+				{% if user.farm %}
+				<a href="{% url 'fruit:farm_product_register' user.farm.pk %}">
+				{% else %}
+				<a href="{% url 'fruit:farm_info_redirect' user.pk %}">
+				{% endif %}
+					<div class="mypage-sell-col1 account-control">
+						<h3>出品登録</h3>
+						<p>果物を出品する</p>
+					</div>
+				</a>
+				{% if user.farm %}
+				<a href="{% url 'fruit:farm_products_list' %}">
+				{% else %}
+				<a href="{% url 'fruit:farm_info_redirect' user.pk %}">
+				{% endif %}
+					<div class="mypage-sell-col1 account-control">
+						<h3>出品一覧</h3>
+						<p>出品一覧を確認する</p>
+					</div>
+				</a>
+			</div>
+		</div>
+	</div>
+</div>
+{% endblock %}

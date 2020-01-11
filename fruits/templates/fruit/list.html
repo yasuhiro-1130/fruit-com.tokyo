@@ -1,0 +1,70 @@
+{% extends "fruit/base.html" %}
+{% block content %}
+{% load static %}
+{% bootstrap_css %}
+{% load humanize %}
+
+<div class="main-visual">
+	<div class="main-visual-content">
+		<div class="main-image">
+		</div>
+		<div class="title">
+			<h1 class="main-title"><span class="title-1">栽培農家直送のおいしいフルーツを食べよう</span><span
+					class="title-2">栽培農家直送の<br>おいしいフルーツを食べよう</span><br>
+				<span class="sub-title">フルーツ農園の生産者と直接取引</span>
+			</h1>
+			{% if user.is_authenticated %}
+			<a href="{% url 'fruit:farm_info_page' user.pk %}" class="sell-fruit-button">
+				<span>フルーツを出品する</span>
+			</a>
+			{% else %}
+			<a href="{% url 'fruit:login' %}" class="sell-fruit-button">
+				<span>フルーツを出品する</span>
+			</a>
+			{% endif %}
+		</div>
+	</div>
+</div>
+<div class="search">
+	<form action="{% url 'fruit:item_list' %}" accept-charset="UTF-8" method="GET">
+		<input type="search" name="q" id="fruit-search" placeholder="名前か産地を入力"><input type="submit" value="検索"
+			id="search-button">
+	</form>
+</div>
+<div class="main-contents-wrapper">
+	{% for object in object_list %}
+	<div class="detail">
+		<a href="{% url 'fruit:item_detail' object.pk %}">
+			<div class="detail-image-content">
+				{% if object.product_image %}
+				<img src="{{ object.thumbnail.url }}">
+				{% else %}
+				<img src="{% static 'no_image_mid.jpg' %}">
+				{% endif %}
+				<div class="origin">{{ object.product_origin }}</div>
+				<div class="price">{{ object.product_price | intcomma }}<span class="tax">円(税込)</span></div>
+			</div>
+		</a>
+		<div class="product-description">
+			<div>
+				<a href="">
+					<p class="producer">{{ object.farm.farm_name }}</p>
+				</a>
+			</div>
+			<div>
+				<p class="name">{{ object.product_name }}</p>
+			</div>
+			<div class="producer-weight-stock">
+				<p class="weight">内容量:<span>{{ object.product_weight }}</span>kg</p>
+				{% if object.product_stock == '0' %}
+				<p class="stock-hold">在庫切れ</p>
+				{% else %}
+				<p class="stock-hold">残り:<span class="stock-num">{{ object.product_stock }}</span>セット</p>
+				{% endif %}
+			</div>
+		</div>
+	</div>
+	{% endfor %}
+</div>
+{% include 'fruit/pagination.html' %}
+{% endblock %}

@@ -1,0 +1,108 @@
+{% extends "fruit/base.html" %}
+{% block content %}
+{% load static %}
+{% bootstrap_css %}
+{% load humanize %}
+
+<div class="sell-items-container">
+	<div class="sell-items-containts">
+		<h1>以下の変更内容で間違いなければ変更するボタンを押してください</h1>
+		<div class="sell-table">
+			<div class="sell-outline">
+				<div class="sell-info farm-info-confirm"">
+					<form action="" accept-charset="UTF-8" method="POST">
+						<div class="farm_register_form_control">
+							<h3 class="">農場名</h3>
+							<div class="farm_form-value">{{ form.farm_name.value }}</div>
+						</div>
+						<div class="farm_register_form_control">
+							<h3 class="">農場代表者姓</h3>
+							<div class="farm_form-value">{{ form.farmrep_last_name.value }}</div>
+						</div>
+						<div class="farm_register_form_control">
+							<h3 class="">農場代表者名</h3>
+							<div class="farm_form-value">{{ form.farmrep_first_name.value }}</div>
+						</div>
+						<div class="farm_register_form_control">
+							<h3 class="">プロフィール画像</h3>
+							{% if request.session.temp_farm_image_path %}
+							<div class="farm_form-value">{{ request.session.temp_farm_image_path }}</div>
+							{% else %}
+							<div class="farm_form-value">なし</div>
+							{% endif %}
+						</div>
+						<div class="farm_register_form_control">
+							<h3 class="">農場説明</h3>
+							<div class="farm_form-value">{{ form.farm_description.value }}</div>
+						</div>
+						<div class="farm_register_form_control">
+							<h3 class="">農場郵便番号</h3>
+							{% if user.farm.farm_postal_code1 %}
+							<div class="farm_form-value">{{ form.farm_postal_code1.value }}&nbsp;-&nbsp;{{ form.farm_postal_code2.value }}</div>
+							{% else %}
+							<div class="farm_form-value"></div>
+							{% endif %}
+						</div>
+						<div class="farm_register_form_control">
+							<h3 class="">農場住所</h3>
+							<div class="farm_form-value">{{ form.farm_address1.value }}</div>
+						</div>
+						<div class="farm_register_form_control">
+							<h3 class="">町域・丁目・番地</h3>
+							<div class="farm_form-value">{{ form.farm_address2.value }}</div>
+						</div>
+						<div class="farm_register_form_control">
+							<h3 class="">ビル・マンション名・部屋番号</h3>
+							<div class="farm_form-value">{{ form.farm_address3.value }}</div>
+						</div>
+						<div class="farm_register_form_control">
+							<h3 class="">電話番号</h3>
+							{% if user.farm.farm_tel_number1 %}
+							<div class="farm_form-value">{{ form.farm_tel_number1.value }}&nbsp;-&nbsp;{{ form.farm_tel_number2.value }}&nbsp;-&nbsp;{{ form.farm_tel_number3.value }}</div>
+							{% else %}
+							<div class="farm_form-value"></div>
+							{% endif %}
+						</div>
+						<div class="farm_register_form_control">
+							<h3 class="">ホームページURL</h3>
+							<div class="farm_form-value">{{ form.farm_url.value }}</div>
+						</div>
+						<div class="farm_register_form_control">
+							<h3 class="">振込先金融機関名</h3>
+							<div class="farm_form-value">{{ form.bank_name.value }}</div>
+						</div>
+						<div class="farm_register_form_control">
+							<h3 class="">振込先口座番号</h3>
+							<div class="farm_form-value">{{ form.bank_account.value }}</div>
+						</div>
+						<div class="farm_register_form_control">
+							<h3 class="">支店番号</h3>
+							<div class="farm_form-value">{{ form.bank_branch_num.value }}</div>
+						</div>
+						<div class="farm_register_form_control">
+							<h3 class="">支店名</h3>
+							<div class="farm_form-value">{{ form.bank_branch_name.value }}</div>
+						</div>
+						<div class="sell-submit-content">
+							<form class="" action="{% url 'fruit:farm_info_change' user.farm.pk %}" enctype="multipart/form-data" method="POST">
+								{% csrf_token %}
+								{% for field in form %}
+								{{ field.as_hidden }}
+								{% endfor %}
+								<div class="farm-info-confirm-buttons">
+									<button class="edit-confirm farm-info-confirm-button-left" type="submit" name="next" value="back">
+										戻る
+									</button>
+									<button class="edit-confirm" type="submit" name="next" value="create">
+										変更する
+									</button>
+								</div>
+							</form>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+{% endblock %}

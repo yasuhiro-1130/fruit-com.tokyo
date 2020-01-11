@@ -1,0 +1,71 @@
+{% extends "fruit/base.html" %}
+{% block content %}
+{% load static %}
+{% bootstrap_css %}
+{% load humanize %}
+
+<div class="sell-items-container">
+	<div>
+		<h1>出品した果物の内容を変更する</h1>
+		<div class="sell-table">
+			<p>以下の内容で間違いがなければ、「変更する」ボタンを押してください。</p>
+			<div class="sell-outline">
+				<div class="sell-info sell-info-confirm">
+					<div class="select-content-confirm">
+						<h3 class="sell-name">商品名</h3>
+						<div class="product-form-value">{{ form.product_name.value }}</div>
+					</div>
+					<div class="select-content-confirm">
+						<h3 class="sell-name">商品カテゴリー</h3>
+						<div class="product-form-value">{{ form.product_category.value }}</div>
+					</div>
+					<div class="select-content-confirm">
+						<h3 class="sell-image">商品画像</h3>
+						{% if request.session.temp_image_path %}
+						<div class="product-form-value">{{ request.session.temp_image_path }}</div>
+						{% else %}
+						<div class="product-form-value">なし</div>
+						{% endif %}
+					</div>
+					<div class="select-content-confirm">
+						<h3 class="sell-price">税込価格(円)</h3>
+						<div class="product-form-value">{{ form.product_price.value }}</div>
+					</div>
+					<div class="select-content-confirm">
+						<h3 class="sell-origin">原産地</h3>
+						<div class="product-form-value">{{ form.product_origin.value }}</div>
+					</div>
+					<div class="select-content-confirm">
+						<h3 class="sell-weight">重量(kg)</h3>
+						<div class="product-form-value">{{ form.product_weight.value }}</div>
+					</div>
+					<div class="select-content-confirm">
+						<h3 class="sell-available">出品数</h3>
+						<div class="product-form-value">{{ form.product_stock.value }}</div>
+					</div>
+					<div class="select-content-confirm">
+						<h3 class="sell-description">商品説明</h3>
+						<div class="product-form-value">{{ form.product_description.value }}</div>
+					</div>
+					<div class="sell-submit-content">
+						<form class="" enctype="multipart/form-data" action="{% url 'fruit:farm_product_change' request.session.url_param %}" method="POST">
+							{% csrf_token %}
+							{% for field in form %}
+							{{ field.as_hidden }}
+							{% endfor %}
+							<div class="sell-submit-buttons">
+								<button class="edit-confirm farm-product-change-btn-left" type="submit" name="next" value="back">
+									戻る
+								</button>
+								<button class="edit-confirm" type="submit" name="next" value="change">
+									変更する
+								</button>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+{% endblock %}

@@ -1,0 +1,65 @@
+{% extends "fruit/base.html" %}
+{% block content %}
+{% load static %}
+{% bootstrap_css %}
+{% load humanize %}
+
+<div class="sell-items-container">
+	<div>
+		<h1>果物を出品する</h1>
+		<div class="sell-table">
+			<p >出品内容をご確認の上、「出品内容確認画面へ進む」を押してください。</p>
+			<div class="sell-outline">
+				<div class="sell-info">
+					<form action="{% url 'fruit:farm_product_register' user.farm.pk %}" enctype="multipart/form-data" accept-charset="UTF-8" method="POST">
+						{% csrf_token %}
+						<div class="select-content">
+							<h3>出品果物名(最大20字)<span>必須</span></h3>
+							{{ form.product_name }}
+							{{ form.product_name.errors }}
+						</div>
+						<div class="select-content">
+							<h3>出品果物カテゴリー<span>必須</span></h3>
+							{{ form.product_category }}
+							{{ form.product_name.category }}
+						</div>
+						<div class="select-content">
+							<h3>商品画像<span class="optional">任意</span></h3>
+							{{ form.product_image }}
+							{{ form.product_image.errors }}
+						</div>
+						<div class="select-content">
+							<h3>税込価格(円)<span>必須</span></h3>
+							{{ form.product_price }}
+							{{ form.product_price.errors }}
+						</div>
+						<div class="select-content">
+							<h3>原産地<span>必須</span></h3>
+							{{ form.product_origin }}
+							{{ form.product_origin.errors }}
+						</div>
+						<div class="select-content">
+							<h3>重量(kg)<span>必須</span></h3>
+							{{ form.product_weight }}
+							{{ form.product_weight.errors }}
+						</div>
+						<div class="select-content">
+							<h3>出品数<span>必須</span></h3>
+							{{ form.product_stock }}
+							{{ form.product_stock.errors }}
+						</div>
+						<div class="select-content">
+							<h3>商品説明(最大200字)<span class="optional">任意</span></h3>
+							{{ form.product_description }}
+							{{ form.product_description.errors }}
+						</div>
+						<div class="sell-submit-content">
+							<button type="submit" class="sell-submit" name="next" value="confirm">確認画面へ進む</button>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+{% endblock %}

@@ -1,0 +1,75 @@
+{% extends "fruit/base.html" %}
+{% block content %}
+{% load static %}
+{% bootstrap_css %}
+{% load humanize %}
+
+<div class="sell-items-container">
+	<div>
+		<h1>出品内容確認</h1>
+		<div class="sell-table">
+			<p>以下の内容で間違いなければ「出品する」ボタンを押してください。</p>
+			<div class="sell-outline">
+				<div class="sell-info sell-info-confirm">
+					<div class="select-content-confirm">
+						<h3>出品果物名</h3>
+						<div class="product-form-value">{{ form.product_name.value }}</div>
+					</div>
+					<div class="select-content-confirm">
+						<h3>出品果物カテゴリー</h3>
+						<div class="product-form-value">{{ form.product_category.value }}</div>
+					</div>
+					<div class="select-content-confirm">
+						<h3>商品画像</h3>
+						{% if request.session.temp_image_path %}
+						<div class="product-form-value">{{ request.session.temp_image_path }}</div>
+						{% else %}
+						<div class="product-form-value">なし</div>
+						{% endif %}
+					</div>
+					<div class="select-content-confirm">
+						<h3>価格</h3>
+						<div class="product-form-value"><span>{{ form.product_price.value | intcomma }}</span>円(税込)</div>
+					</div>
+					<div class="select-content-confirm">
+						<h3>原産地</h3>
+						<div class="product-form-value">{{ form.product_origin.value }}</div>
+					</div>
+					<div class="select-content-confirm">
+						<h3>重量</h3>
+						<div class="product-form-value"><span>{{ form.product_weight.value }}</span>kg</div>
+					</div>
+					<div class="select-content-confirm">
+						<h3>出品数</h3>
+						<div class="product-form-value"><span>{{ form.product_stock.value }}</span>セット</div>
+					</div>
+					<div class="select-content-confirm">
+						<h3>商品説明</h3>
+						{% if form.product_description.value %}
+						<div class="product-form-value">{{ form.product_description.value }}</div>
+						{% else %}
+						<div class="product-form-value">なし</div>
+						{% endif %}
+					</div>
+					<div class="sell-submit-content-confirm">
+						<form action="{% url 'fruit:farm_product_register' user.farm.pk %}" method="POST" enctype="multipart/form-data">
+							{% csrf_token %}
+							{% for field in form %}
+							{{ field.as_hidden }}
+							{% endfor %}
+							<div class="sell-submit-buttons">
+								<button class="edit-back" type="submit" name="next" value="back">
+									戻る
+								</button>
+								<button class="edit-confirm" type="submit" name="next" value="create">
+									出品する
+								</button>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+{% endblock %}

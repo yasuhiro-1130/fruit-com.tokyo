@@ -1,0 +1,360 @@
+{% extends "fruit/base.html" %}
+{% block content %}
+{% load static %}
+{% bootstrap_css %}
+{% load humanize %}
+<script src="{% static 'js/star.js' %}" type="text/javascript"></script>
+<div class="detail-container">
+	<div class="detail-overview">
+		<div class="detail-main">
+			<div class="detail-image">
+				{% if object.product_image %}
+				<img src="{{ object.big.url }}">
+				{% else %}
+				<img src="{% static 'no_image.jpg' %}">
+				{% endif %}
+			</div>
+			<div class="detail-content">
+				<p class="detail-origin">{{ object.product_origin }}</p>
+				<h1 class="detail-product-name">
+					{{ object.product_name }}
+				</h1>
+				<div class="detail-price">
+					<p><span class="detail-price-num">{{ object.product_price | intcomma }}</span>円(税込)</p>
+				</div>
+				<div class="detail-rating-content">
+					<div class="detail-rating">
+						<span>
+							{% if object.avg_rating > 0 %}
+							<span>★</i></span>
+							{% else %}
+							<span>☆</span>
+							{% endif %}
+							{% if object.avg_rating > 1 %}
+							<span>★</i></span>
+							{% else %}
+							<span>☆</span>
+							{% endif %}
+							{% if object.avg_rating > 2 %}
+							<span>★</i></span>
+							{% else %}
+							<span>☆</span>
+							{% endif %}
+							{% if object.avg_rating > 3 %}
+							<span>★</i></span>
+							{% else %}
+							<span>☆</span>
+							{% endif %}
+							{% if object.avg_rating > 4 %}
+							<span>★</i></span>
+							{% else %}
+							<span>☆</span>
+							{% endif %}
+						</span>
+					</div>
+					<div class="">{{ review_counts }}件の評価</div>
+				</div>
+				<div class="detail-item-control">
+					{% if object.product_stock == '0' %}
+					<!-- 在庫0の場合表示なし -->
+					{% else %}
+					<!-- 在庫ありの場合 -->
+					<form method="POST" action="{% url 'fruit:cart_item_list' %}" class="detail-put">
+						{% csrf_token %}
+						<div class="detail-quantity">
+							<label for="detail-available">{{ object.product_quantity }}</label>
+							<select id="detail-available" class="detail-quantity-num" name="cart_amount">
+								<option value="1">1</option>
+								<option value="2">2</option>
+								<option value="3">3</option>
+								<option value="4">4</option>
+								<option value="5">5</option>
+								<option value="6">6</option>
+								<option value="7">7</option>
+								<option value="8">8</option>
+								<option value="9">9</option>
+								<option value="10">10</option>
+								<option value="11">11</option>
+								<option value="12">12</option>
+								<option value="13">13</option>
+								<option value="14">14</option>
+								<option value="15">15</option>
+								<option value="16">16</option>
+								<option value="17">17</option>
+								<option value="18">18</option>
+								<option value="19">19</option>
+								<option value="20">20</option>
+							</select>
+						</div>
+						<input name="product_pk" type="hidden" value="{{ object.pk }}">
+						<div class="detail-cart-button">
+							<button class="put-cart">
+								カートに追加
+							</button>
+						</div>
+					</form>
+					{% endif %}
+					<div class="detail-weight">
+						<p>内容量：<span class="detail-weight-num">{{ object.product_weight }}</span>kg</p>
+					</div>
+					<div class="detail-stock">
+						{% if object.product_stock == '0' %}
+						<p class="out-of-stock">在庫切れ</p>
+						{% else %}
+						<p>残&nbsp;&nbsp;&nbsp;&nbsp;り：<span
+								class="detail-stock-num">{{ object.product_stock }}</span>セット</p>
+						{% endif %}
+					</div>
+					<div class="detail-producer">
+						生産者：<span class="producer-name">{{ object.farm.farm_name }}</span>
+					</div>
+				</div>
+			</div>
+		</div>
+		{% if object.product_description %}
+		<div class="detail-description-content">
+			<div class="detail-description-outline">
+				<h3>商品の説明</h3>
+				<p class="detail-description-words">{{ object.product_description | linebreaksbr }}</p>
+			</div>
+		</div>
+		{% endif %}
+		<div class="detail-comments">
+			{% if user.is_authenticated %}
+			<div class="detail-comments-outline">
+				<h4>コメント入力欄</h4>
+				<form action="" method="POST">
+					{{ form.non_field_errors }}
+					{% for field in form %}
+					<div class="detail-form-group">
+						<label for="{{ field.id_for_label }}">{{ field.label_tag }}</label>
+						{% if field.name == 'rating' %}
+						<div class="rating"></div>
+						{% endif %}
+						{{ field }}
+						{{ field.errors }}
+					</div>
+					{% endfor %}
+					{% csrf_token %}
+					<div class="comment-submit-button">
+						<button type="submit">
+							投稿する
+						</button>
+					</div>
+				</form>
+			</div>
+			{% endif %}
+			{% if comments %}
+			<div class="comment-content">
+				<div class="comment-outline">
+					{% for comment in comments %}
+					<div class="comment-wrapper">
+						<div class="user-info">
+							<div class="icon">
+								<img src="{% static 'egg_icon.png' %}">
+							</div>
+						</div>
+						<div class="comments">
+							<div class="comment-name-star-wrapper">
+								<div class="comment-2">
+									<small>{{ comment.user.name }} さん</small>
+									<div class="comment-title-rate">
+										<div class="rating-star">
+											{% if comment.rating > 0 %}
+											<span>★</i></span>
+											{% else %}
+											<span>☆</span>
+											{% endif %}
+											{% if comment.rating > 1 %}
+											<span>★</i></span>
+											{% else %}
+											<span>☆</span>
+											{% endif %}
+											{% if comment.rating > 2 %}
+											<span>★</i></span>
+											{% else %}
+											<span>☆</span>
+											{% endif %}
+											{% if comment.rating > 3 %}
+											<span>★</i></span>
+											{% else %}
+											<span>☆</span>
+											{% endif %}
+											{% if comment.rating > 4 %}
+											<span>★</i></span>
+											{% else %}
+											<span>☆</span>
+											{% endif %}
+										</div>
+									</div>
+								</div>
+								<div class="comment-3">
+									<div class="comment-date">
+										{{ comment.updated }}
+									</div>
+									{% if request.user == comment.user %}
+									<div class="comment-edit-delete-wrapper">
+										<button class="comment-edit" pk="{{ comment.pk }}">編集</button>
+									</div>
+									<div class="overlay"></div>
+									<div class="modal">
+										<textarea id="edit-area"></textarea>
+										<div class="comment-edit-button">
+											<button class="edit-close">閉じる</button>
+											<button class="overwrite">上書き</button>
+										</div>
+									</div>
+									<div>
+										<button class="comment-delete" pk="{{ comment.pk }}">削除</button>
+									</div>
+									{% endif %}
+								</div>
+							</div>
+							<div class="comment">
+								{{ comment.comment| linebreaksbr }}
+							</div>
+						</div>
+					</div>
+					{% endfor %}
+				</div>
+			</div>
+			{% endif %}
+		</div>
+	</div>
+</div>
+{% endblock %}
+{% block scripts %}
+<!-- 評価スター -->
+<script>
+	$(function () {
+		var options = {
+			max_value: 5,
+			step_size: 1,
+			initial_value: 0,
+			selected_symbol_type: 'utf8_star', // Must be a key from symbols
+			cursor: 'default',
+			readonly: false,
+			change_once: false, // Determines if the rating can only be set once
+		}
+
+		var $rating = $(".rating");
+		var $rating_input = $('#id_rating');
+
+		$rating.rate(options);
+		$rating.on('change', function () {
+			$rating_input.val(parseInt($(this).rate('getValue')));
+		});
+	});
+</script>
+<!-- コメント削除 -->
+<script>
+	function call_delete_comment(_pk) {
+		return $.ajax({
+			url: '{% url "fruit:delete_comment" %}',
+			type: 'POST',
+			dataType: 'json',
+			data: {
+				comment_pk: _pk
+			}
+		});
+	}
+	$(function () {
+		var $delete_button = $('button[class="comment-delete"]');
+
+		$delete_button.on('click', function () {
+			var comment_pk = $(this).attr('pk');
+			call_delete_comment(comment_pk)
+				.done((data) => {
+					if (data.success) {
+						location.reload();
+						return;
+					}
+					alert(data.error);
+				})
+				.fail((ata, textStatus, xhr) => {
+					alert(xhr);
+				});
+		});
+	})
+</script>
+
+<!-- コメント読み込み -->
+<script>
+	function call_read_comment(_pk) {
+		return $.ajax({
+			url: '{% url "fruit:read_comment" %}',
+			type: 'POST',
+			dataType: 'json',
+			data: {
+				comment_pk: _pk
+			}
+		});
+	}
+	$(function () {
+		var $edit_button = $('button[class="comment-edit"]');
+
+		$edit_button.on('click', function () {
+			var comment_pk = $(this).attr('pk');
+			call_read_comment(comment_pk)
+				.done((data) => {
+					if (data) {
+						$("#edit-area").text(data.comment);
+						$("#edit-area").attr('pk', parseInt(data.comment_pk));
+						return;
+					}
+					alert(data.error);
+				})
+				.fail((ata, textStatus, xhr) => {
+					alert(xhr);
+				});
+		});
+	})
+</script>
+
+<!-- コメント上書き -->
+<script>
+	function call_overwrite_comment(_pk, _content) {
+		return $.ajax({
+			url: '{% url "fruit:overwrite_comment" %}',
+			type: 'POST',
+			dataType: 'json',
+			data: {
+				comment_pk: _pk,
+				textarea_content: _content
+			}
+		});
+	}
+	$(function () {
+		var $overwrite_button = $('button[class="overwrite"]');
+
+		$overwrite_button.on('click', function () {
+			var comment_pk = $("#edit-area").attr('pk');
+			var textarea_content = $("#edit-area").val();
+			call_overwrite_comment(comment_pk, textarea_content)
+				.done((data) => {
+					if (data) {
+						location.reload();
+						return;
+					}
+					alert(data.error);
+				})
+				.fail((ata, textStatus, xhr) => {
+					alert(xhr);
+				});
+		});
+	})
+</script>
+
+<!-- モーダル生成 -->
+<script>
+	$(function () {
+		$('.comment-edit').click(function () {
+			$('.overlay, .modal:first').fadeIn();
+		})
+
+		$('.overlay, .edit-close').click(function () {
+			$('.overlay, .modal').fadeOut();
+		})
+	});
+</script>
+{% endblock %}

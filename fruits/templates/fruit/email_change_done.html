@@ -1,0 +1,14 @@
+{% extends "fruit/base.html" %}
+{% block content %}
+{% load static %}
+{% bootstrap_css %}
+<div class="done-complete-content">
+	<div class="done-complete-outline">
+		<h2>メールアドレス変更確認メール送信完了</h2>
+		<p>
+			記入された新しいメールアドレス宛に確認メールを送信しました。<br>
+			確認メールに記載されているリンクをクリックすると、アドレスが変更されます。
+		</p>
+	</div>
+</div>
+{% endblock %}

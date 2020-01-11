@@ -1,0 +1,67 @@
+{% extends "fruit/base.html" %}
+{% block content %}
+{% load static %}
+{% bootstrap_css %}
+{% load humanize %}
+<div class="order-container">
+	<div class="order-outline">
+		<h2>注文履歴</h2>
+		<p class="">以下は<span>{{ user.name}}</span>さんの注文履歴です</p>
+		{% if orders %}
+		<div class="order-list-wrapper">
+			<section class="order-list-outline">
+				<p class="order-count">総注文件数：<span>{{ user.order_count }}</span>件</p>
+				<div>
+					{% for order in orders %}
+					<div class="order-item">
+						<div class="order-info">
+							<div class="left">
+								<p class="order-status">注文処理状況: 受注済</p>
+								<p>注文日: {{ order.created_at }}</p>
+							</div>
+							<div class="right">
+								<p class="order-num">注文番号: {{ order.pk }}</p>
+								<p class="delivery-date">発送日: 調整中</p>
+							</div>
+						</div>
+						{% for item in order.ordered_items.all %}
+						<table>
+							<tbody>
+								<tr>
+									<td>
+										<div class="order-box">
+											<div>
+												<p id="order-his-thumbnail">
+													{% if item.product.product_image %}
+													<img src="{{ item.product.small.url }}">
+													{% else %}
+													<img src="{% static 'no_image_mid.jpg' %}">
+													{% endif %}
+												</p>
+											</div>
+											<div class="order-item-content">
+												<p>{{ item.product.farm.farm_name }}</p>
+												<p>{{ item.product.product_name }}</p>
+												<div class="order-history-price"><p>{{ item.product.product_price| intcomma }}円<span>(税込)</span>&nbsp;</p>/<p>&nbsp;<span>数量: {{ item.amount }}</span></p></div>
+											</div>
+										</div>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+						{% endfor %}
+						<ul class="order-history-pay">
+							<li>支払い方法: クレジットカード</li>
+							<li>支払い代金 合計: {{ order.total_amount| intcomma }}円(税込)</li>
+						</ul>
+					</div>
+					{% endfor %}
+				</div>
+			</section>
+		</div>
+		{% else %}
+		<div>注文履歴はありません</div>
+		{% endif %}
+	</div>
+</div>
+{% endblock %}

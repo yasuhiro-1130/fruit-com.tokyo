@@ -1,0 +1,80 @@
+version: 2.1
+orbs:
+  aws-ecr: circleci/aws-ecr@6.5.0
+  aws-ecs: circleci/aws-ecs@1.0.4
+
+# 実行環境の定義
+executors:
+  test_default:
+    working_directory: ~/myproject
+    docker:
+    - image: circleci/python:3.7
+      environment:
+        PYTHONDONTWRITEBYTECODE: 1
+        PYTHONUNBUFFERED: 1
+        DATABASE_ENGINE: django.db.backends.postgresql
+        DJANGO_SECRET_KEY: test
+        DATABASE_NAME: circle_test
+        DATABASE_USER: root
+        DATABASE_HOST: localhost
+        DATABASE_PORT: 5432    
+    - image: circleci/postgres:11.4
+      environment:
+        POSTGRES_USER: root
+        POSTGRES_DB: circle_test
+
+# 実行コマンドの定義
+commands:
+  pip_install:
+    description: "pip installを実行"
+    steps:
+      - run:
+          name: pip install
+          command: pip install --user -r requirements.txt
+  run_test:
+    description: "testを実行"
+    steps:
+      - run:
+          name: run test
+          command: |
+            cd fruits
+            python manage.py test
+
+# ジョブの定義
+jobs:
+  build:
+    executor: test_default
+    steps:
+      - checkout
+      - pip_install
+      - run_test
+
+# ワークフロー
+workflows:
+  version: 2.1
+  build_and_deploy:
+    jobs:
+      - build
+      - aws-ecr/build-and-push-image:
+          dockerfile: "./Dockerfile"
+          requires:
+            - build
+          account-url: AWS_ECR_ACCOUNT_URL
+          repo: "${AWS_RESOURCE_NAME_PREFIX}"
+          region: AWS_DEFAULT_REGION
+          tag: "${CIRCLE_SHA1}"
+          filters:
+            branches:
+              only: master
+      - aws-ecs/deploy-service-update:
+          requires:
+            - aws-ecr/build-and-push-image
+          verify-revision-is-deployed: true
+          aws-region: ${AWS_DEFAULT_REGION}
+          family: "${TASK_DEFINITION_NAME}"
+          cluster-name: "${CLUSTER_NAME}"
+          service-name: "${SERVICE_NAME}"
+          container-image-name-updates: "container=${CONTAINER_NAME},tag=${CIRCLE_SHA1}"        
+          filters:
+            branches:
+              only: master

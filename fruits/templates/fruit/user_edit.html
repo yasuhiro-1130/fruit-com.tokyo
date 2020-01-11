@@ -1,0 +1,249 @@
+{% extends "fruit/base.html" %}
+{% block content %}
+{% load static %}
+{% bootstrap_css %}
+
+<div class="edit-container">
+	<form action="{% url 'fruit:edit_user' user.pk %}" method="POST">
+		{% csrf_token %}
+		<div class="edit-head">
+			<h2>ユーザー情報確認・変更</h2>
+			<p>ユーザー情報の確認、変更ができます</p>
+			{{ form.non_field_errors }}
+		</div>
+		<caption>ログイン情報</caption>
+		<table class="edit-login">
+			<tbody>
+				<tr class="edit-email-password">
+					<th>
+						メールアドレス
+						<a href="{% url 'fruit:email_change' %}"><span class="mail-change">変更する</span></a>
+					</th>
+					<td>
+						{{ user.email }}
+					</td>
+				</tr>
+				<tr class="edit-email-password">
+					<th>
+						パスワード
+						<a href="{% url 'fruit:password_change' %}"><span class="password-change">変更する</span></a>
+					</th>
+					<td>
+						非表示
+					</td>
+				</tr>
+			</tbody>
+		</table>
+		<caption>お客様の情報</caption>
+		<table class="edit-user-table">
+			<tbody>
+				<tr class="edit-username">
+					<th>
+						ユーザーネーム<span>必須</span>
+					</th>
+					<td>
+						{{ form.name }}
+						{{ form.name.errors }}
+					</td>
+				</tr>
+				<tr class="edit-lastname">
+					<th>
+						姓
+					</th>
+					<td>
+						{{ form.last_name }}
+						{{ form.last_name.errors }}
+					</td>
+				</tr>
+				<tr class="edit-firstname">
+					<th>
+						名
+					</th>
+					<td>
+						{{ form.first_name }}
+						{{ form.first_name.errors }}
+					</td>
+				</tr>
+				<tr class="edit-sex">
+					<th>
+						性別
+					</th>
+					<td>
+						<ul>
+							{{ form.gender }}
+							{{ form.gender.errors }}
+						</ul>
+					</td>
+				</tr>
+				<tr class="edit-birthdate">
+					<th>
+						生年月日
+					</th>
+					<td>
+						{{ form.birthday1 }}
+						{{ form.birthday1.errors }}
+						年
+						{{ form.birthday2 }}
+						{{ form.birthday2.errors }}
+						月
+						{{ form.birthday3 }}
+						{{ form.birthday3.errors }}
+						日
+					</td>
+				</tr>
+				<tr class="edit-postalcode">
+					<th>
+						郵便番号
+					</th>
+					<td>
+						〒{{ form.postal_code1 }}&nbsp;-&nbsp;{{ form.postal_code2 }}
+						{{ form.postal_code1.errors }}&nbsp;&nbsp;{{ form.postal_code2.errors }}
+					</td>
+				</tr>
+				<tr class="edit-address1">
+					<th>
+						住所
+					</th>
+					<td>
+						{{ form.address1 }}
+						{{ form.address1.errors }}
+					</td>
+				</tr>
+				<tr class="edit-address2">
+					<th>
+						町域・丁目・番地
+					</th>
+					<td>
+						{{ form.address2 }}
+						{{ form.address2.errors }}
+					</td>
+				</tr>
+				<tr class="edit-address3">
+					<th>
+						ビル・マンション名・部屋番号
+					</th>
+					<td>
+						{{ form.address3 }}
+						{{ form.address3.errors }}
+					</td>
+				</tr>
+				<tr class="edit-phone-num">
+					<th>
+						電話番号
+					</th>
+					<td>
+						{{ form.tel_number1 }}&nbsp;-&nbsp;{{ form.tel_number2 }}&nbsp;-&nbsp;{{ form.tel_number3 }}
+						{{ form.tel_number1.errors }}&nbsp;&nbsp;{{ form.tel_number2.errors }}&nbsp;&nbsp;{{ form.tel_number3.errors }}
+					</td>
+				</tr>
+				<tr class="edit-name-del">
+					<th>
+						お届け先 宛名<button class="address-copy" type="button" onclick="copy_address()">コピーする</button>
+					</th>
+					<td>
+						{{ form.name_dlv }}&nbsp;&nbsp;様
+					</td>
+				</tr>
+				<tr class="edit-name-del">
+					<th>
+						お届け先 郵便番号
+					</th>
+					<td>
+						〒{{ form.postal_code_dlv1 }}&nbsp;-&nbsp;{{ form.postal_code_dlv2 }}
+						{{ form.postal_code_dlv1.errors }}&nbsp;&nbsp;{{ form.postal_code_dlv2.errors }}
+					</td>
+				</tr>
+				<tr class="edit-address1-del">
+					<th>
+						お届け先 住所
+					</th>
+					<td>
+						{{ form.address_dlv1 }}
+						{{ form.address_dlv1.errors }}
+					</td>
+				</tr>
+				<tr class="edit-address2-del">
+					<th>
+						お届け先 町域・丁目・番地
+					</th>
+					<td>
+						{{ form.address_dlv2 }}
+						{{ form.address_dlv2.errors }}
+					</td>
+				</tr>
+				<tr class="edit-address3-del">
+					<th>
+						お届け先 ビル・マンション名・部屋番号
+					</th>
+					<td>
+						{{ form.address_dlv3 }}
+						{{ form.address_dlv3.errors }}
+					</td>
+				</tr>
+				<tr class="edit-phone-num-del">
+					<th>
+						お届け先 電話番号
+					</th>
+					<td>
+						{{ form.tel_number_dlv1 }}&nbsp;-&nbsp;{{ form.tel_number_dlv2 }}&nbsp;-&nbsp;{{ form.tel_number_dlv3 }}
+						{{ form.tel_number_dlv1.errors }}&nbsp;&nbsp;{{ form.tel_number_dlv2.errors }}&nbsp;&nbsp;{{ form.tel_number_dlv3.errors }}
+					</td>
+				</tr>
+			</tbody>
+		</table>
+		<button type="submit" class="edit-confirm edit-proceed" name="next" value="confirm">確認画面へ進む</button>
+	</form>
+</div>
+{% endblock %}
+{% block scripts %}
+<!-- 住所の自動入力 -->
+<script>
+	$(function () {
+		$('#id_postal_code1').jpostal({
+			postcode: [
+				'#id_postal_code1',
+				'#id_postal_code2'
+			],
+			address: {
+				'#id_address1': '%3%4%5%6',
+			}
+		});
+	});
+	$(function () {
+		$('#id_postal_code_dlv1').jpostal({
+			postcode: [
+				'#id_postal_code_dlv1',
+				'#id_postal_code_dlv2'
+			],
+			address: {
+				'#id_address_dlv1': '%3%4%5%6',
+			}
+		});
+	});
+</script>
+<!-- 住所情報を届け先情報へのコピー -->
+<script>
+	function copy_address() {
+		const last_name = document.getElementById("id_last_name").value;
+		const first_name = document.getElementById("id_first_name").value;
+		const postal_code1 = document.getElementById("id_postal_code1").value;
+		const postal_code2 = document.getElementById("id_postal_code2").value;
+		const id_address1 = document.getElementById("id_address1").value;
+		const id_address2 = document.getElementById("id_address2").value;
+		const id_address3 = document.getElementById("id_address3").value;
+		const id_tel_number1 = document.getElementById("id_tel_number1").value;
+		const id_tel_number2 = document.getElementById("id_tel_number2").value;
+		const id_tel_number3 = document.getElementById("id_tel_number3").value;
+
+		document.getElementById("id_name_dlv").value = last_name + first_name;
+		document.getElementById("id_postal_code_dlv1").value = postal_code1;
+		document.getElementById("id_postal_code_dlv2").value = postal_code2;
+		document.getElementById("id_address_dlv1").value = id_address1;
+		document.getElementById("id_address_dlv2").value = id_address2;
+		document.getElementById("id_address_dlv3").value = id_address3;
+		document.getElementById("id_tel_number_dlv1").value = id_tel_number1;
+		document.getElementById("id_tel_number_dlv2").value = id_tel_number2;
+		document.getElementById("id_tel_number_dlv3").value = id_tel_number3;
+	}
+</script>
+{% endblock %}

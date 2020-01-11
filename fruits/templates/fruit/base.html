@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+{% load static %}
+{% load humanize %}
+<html lang="ja">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<meta name="description" content="日本全国のフルーツ農家から最高のフルーツを仕入れています。" />
+	<meta name="format-detection" content="email=no,telephone=no,address=no" />
+	<title>fruits.com</title>
+	<link href="{% static 'css/style.css' %}" rel="stylesheet" type="text/css" />
+	<link href="{% static 'css/normalize.css' %}" rel="stylesheet" type="text/css" />
+	<link href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" rel="stylesheet">
+	<link rel="shortcut icon" href="{% static 'favicon_orange_32.ico' %}">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	<script src="{% static 'js/star.js' %}" type="text/javascript"></script>
+	<script type="text/javascript" src="//jpostal-1006.appspot.com/jquery.jpostal.js"></script>
+</head>
+
+<body>
+	<div class="site-container">
+		<div class="header-container">
+			{% if messages %}
+			<ul class="messages">
+				{% for message in messages %}
+				<li{% if message.tags %} class="{{ message.tags }}" {% endif %}>{{ message }}</li>
+					{% endfor %}
+			</ul>
+			{% endif %}
+			<header>
+				<div class="logo-container">
+					<a href="{% url 'fruit:item_list' %}">
+						<div class="header-logo">
+							<h1 class="logo">
+								<img src="{% static 'logo.png' %}">
+							</h1>
+						</div>
+					</a>
+					{% if user.is_authenticated %}
+					<a href="{% url 'fruit:cart_item_list' %}" class="cart-small-link">
+						<i class="fas fa-shopping-cart fa-2x cart-color"><span class="cart-name"></span></i>
+						<span>{{ user.cart.item_count|default_if_none:"" }}</span>
+					</a>
+					{% else %}
+					<a href="{% url 'fruit:cart_item_list' %}" class="cart-small-link">
+						<span class="cart-small"><i class="fas fa-shopping-cart fa-2x cart-color"></i></span>
+					</a>
+					{% endif %}
+				</div>
+				<div class="menu-container">
+					<div class="member-menu">
+						{% if user.is_authenticated %}
+						<a href="{% url 'fruit:user_mypage' %}">
+							<small>{{user.name}}さん</small>
+							<div class="user-mypage-button">
+								<span>マイページ</span>
+							</div>
+						</a>
+						<a href="{% url 'fruit:logout' %}">
+							<div class="log-in-wrapper">
+								<span>ログアウト</span>
+							</div>
+						</a>
+						<a href="{% url 'fruit:cart_item_list' %}" class="cart-link">
+							<i class="fas fa-shopping-cart fa-3x cart-color"></i>カート
+							<span>{{ user.cart.item_count|default_if_none:"" }}</span>
+						</a>
+						{% else %}
+						<a href="{% url 'fruit:sign_up' %}">
+							<div class="sign-in-wrapper">
+								<span>新規登録</span>
+							</div>
+						</a>
+						<a href="{% url 'fruit:login' %}">
+							<small class="no-display">ゲストさん</small>
+							<div class="log-in-wrapper">
+								<span>ログイン</span>
+							</div>
+						</a>
+						<a href="{% url 'fruit:cart_item_list' %}">
+							<span class="cart-large"><i class="fas fa-shopping-cart fa-3x cart-color"></i>カート</span>
+							<span class="cart-middle"><i class="fas fa-shopping-cart fa-3x cart-color"></i></span>
+						</a>
+						{% endif %}
+					</div>
+				</div>
+			</header>
+		</div>
+		<div class="main-container">
+			{% block content %}
+			{% endblock %}
+		</div>
+		<div class="footer-container">
+			<div class="navigation">
+				<a href="{% url 'fruit:item_list' %}">
+					<div class="logo-footer">
+						<img src="{% static 'logo.png' %}">
+					</div>
+				</a>
+			</div>
+			<div class="footer">
+				<section>
+					<h3>fruits.comについて</h3>
+					<ul class="footer-ul">
+						<li>会社概要</li>
+						<li>採用情報</li>
+						<li>プレスリリース</li>
+						<li>公式ブログ</li>
+					</ul>
+				</section>
+				<section>
+					<h3>ヘルプ&ガイド</h3>
+					<ul class="footer-ul">
+						<li>お問い合わせ</li>
+						<li>よくある質問</li>
+					</ul>
+				</section>
+				<section>
+					<h3>プライバシーと利用規約</h3>
+					<ul class="footer-ul">
+						<li>利用規約</li>
+						<li>プライバシーポリシー</li>
+					</ul>
+				</section>
+			</div>
+		</div>
+	</div>
+	<script type="text/javascript">
+		function getCookie(name) {
+			var cookieValue = null;
+			if (document.cookie && document.cookie !== '') {
+				var cookies = document.cookie.split(';');
+				for (var i = 0; i < cookies.length; i++) {
+					var cookie = jQuery.trim(cookies[i]);
+					// Does this cookie string begin with the name we want?
+					if (cookie.substring(0, name.length + 1) === (name + '=')) {
+						cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+						break;
+					}
+				}
+			}
+			return cookieValue;
+		}
+
+		var csrftoken = getCookie('csrftoken');
+
+		function csrfSafeMethod(method) {
+			// these HTTP methods do not require CSRF protection
+			return (/^(GET|HEAD|OPTIONS|TRACE)$/.test(method));
+		}
+
+		$.ajaxSetup({
+			beforeSend: function (xhr, settings) {
+				if (!csrfSafeMethod(settings.type) && !this.crossDomain) {
+					xhr.setRequestHeader("X-CSRFToken", csrftoken);
+				}
+			}
+		});
+
+		$('.messages').fadeOut(5000);
+
+	</script>
+	{% block scripts %}
+	{% endblock %}
+</body>
+
+</html>

@@ -1,0 +1,45 @@
+{% extends "fruit/base.html" %}
+{% block content %}
+{% load static %}
+{% bootstrap_css %}
+<div class="delete-container">
+	<div class="delete-outline">
+		<h2>出品情報の削除</h2>
+		{% if delete_farm_products %}
+		<div class="delete-warning">
+			<p class=""><span>{{ user.farm.farm_name }}</span><br>の以下の出品果物を削除しますがよろしいですか</p>
+			<p>削除ボタンを押すとデータベースから<br>完全に消去され取り消しができません</p>
+		</div>
+		{% for product in delete_farm_products %}
+		<div class="delete-items">
+			<span>{{ product.product_name }}</span>
+		</div>
+		{% endfor %}
+		{% else %}
+		<div class="delete-no-check">
+			1つ以上にチェックを入れてください
+		</div>
+		{% endif%}
+		<div class="delete-buttons">
+			{% if delete_farm_products %}
+			<a href="{% url 'fruit:farm_products_list' %}">
+				<button id="delete-button-left">
+					戻る
+				</button>
+			</a>
+			<a href="{% url 'fruit:farm_product_delete' %}">
+				<button type="submit">
+					削除
+				</button>
+			</a>
+			{% else %}
+			<a href="{% url 'fruit:farm_products_list' %}">
+				<button id="delete-button-no-check">
+					戻る
+				</button>
+			</a>
+			{% endif %}
+		</div>
+	</div>
+</div>
+{% endblock %}

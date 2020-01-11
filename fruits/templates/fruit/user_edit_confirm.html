@@ -1,0 +1,214 @@
+{% extends "fruit/base.html" %}
+{% block content %}
+{% load static %}
+{% bootstrap_css %}
+
+<div class="edit-container">
+	<div class="edit-head">
+		<h2>以下の変更内容で間違いなければ変更するボタンを押してください</span></h2>
+	</div>
+	<caption>ログイン情報</caption>
+	<table class="edit-login">
+		<tbody>
+			<tr class="edit-email-password">
+				<th>
+					メールアドレス
+				</th>
+				<td>
+					{{ user.email }}
+				</td>
+			</tr>
+			<tr class="edit-email-password">
+				<th>
+					パスワード
+				</th>
+				<td>
+					非表示
+				</td>
+			</tr>
+		</tbody>
+	</table>
+	<caption>お客様の情報</caption>
+	<table class="edit-user-table">
+		<tbody>
+			<tr class="edit-username">
+				<th>
+					ユーザーネーム
+				</th>
+				<td>
+					{{ form.name.value }}
+				</td>
+			</tr>
+			<tr class="edit-lastname">
+				<th>
+					姓
+				</th>
+				<td>
+					{{ form.last_name.value }}
+				</td>
+			</tr>
+			<tr class="edit-firstname">
+				<th>
+					名
+				</th>
+				<td>
+					{{ form.first_name.value }}
+				</td>
+			</tr>
+			<tr class="edit-sex">
+				<th>
+					性別
+				</th>
+				<td>
+					<ul>
+						{{ form.gender.value }}
+					</ul>
+				</td>
+			</tr>
+			<tr class="edit-birthdate">
+				<th>
+					生年月日
+				</th>
+				{% if form.birthday1.value %}
+				<td>
+					{{ form.birthday1.value }}
+					年
+					{{ form.birthday2.value }}
+					月
+					{{ form.birthday3.value }}
+					日
+				</td>
+				{% else %}
+				<td>
+				</td>
+				{% endif %}
+			</tr>
+			<tr class="edit-postalcode">
+				<th>
+					郵便番号
+				</th>
+				{% if form.postal_code1.value %}
+				<td>
+					〒&nbsp;{{ form.postal_code1.value }}&nbsp;-&nbsp;{{ form.postal_code2.value }}
+				</td>
+				{% else %}
+				<td>
+				</td>
+				{% endif %}
+			</tr>
+			<tr class="edit-address1">
+				<th>
+					住所
+				</th>
+				<td>
+					{{ form.address1.value }}
+				</td>
+			</tr>
+			<tr class="edit-address2">
+				<th>
+					町域・丁目・番地
+				</th>
+				<td>
+					{{ form.address2.value }}
+				</td>
+			</tr>
+			<tr class="edit-address3">
+				<th>
+					ビル・マンション名・部屋番号
+				</th>
+				<td>
+					{{ form.address3.value }}
+				</td>
+			</tr>
+			<tr class="edit-phone-num">
+				<th>
+					電話番号
+				</th>
+				{% if form.tel_number1.value %}
+				<td>
+					TEL:&nbsp;{{ form.tel_number1.value }}&nbsp;-&nbsp;{{ form.tel_number2.value }}&nbsp;-&nbsp;{{ form.tel_number3.value }}
+				</td>
+				{% else %}
+				<td>
+				</td>
+				{% endif %}
+			</tr>
+			<tr class="edit-name-del">
+				<th>
+					お届け先 宛名
+				</th>
+				<td>
+					{{ form.name_dlv.value }}
+				</td>
+			</tr>
+			<tr class="edit-name-del">
+				<th>
+					お届け先 郵便番号
+				</th>
+				{% if form.postal_code_dlv1.value %}
+				<td>
+					〒&nbsp;{{ form.postal_code_dlv1.value }}&nbsp;-&nbsp;{{ form.postal_code_dlv2.value }}
+				</td>
+				{% else %}
+				<td>
+				</td>
+				{% endif %}
+			</tr>
+			<tr class="edit-address1-del">
+				<th>
+					お届け先 住所
+				</th>
+				<td>
+					{{ form.address_dlv1.value }}
+				</td>
+			</tr>
+			<tr class="edit-address2-del">
+				<th>
+					お届け先 町域・丁目・番地
+				</th>
+				<td>
+					{{ form.address_dlv2.value }}
+				</td>
+			</tr>
+			<tr class="edit-address3-del">
+				<th>
+					お届け先 ビル・マンション名・部屋番号
+				</th>
+				<td>
+					{{ form.address_dlv3.value }}
+				</td>
+			</tr>
+			<tr class="edit-phone-num-del">
+				<th>
+					お届け先 電話番号
+				</th>
+				{% if form.tel_number_dlv1.value %}
+				<td>
+					TEL:&nbsp;{{ form.tel_number_dlv1.value }}&nbsp;-&nbsp;{{ form.tel_number_dlv2.value }}
+					&nbsp;-&nbsp;{{ form.tel_number_dlv3.value }}
+				</td>
+				{% else %}
+				<td>
+				</td>
+				{% endif %}
+			</tr>
+		</tbody>
+	</table>
+	<div class="user-edit-confirm-buttons">
+		<form class="" action="{% url 'fruit:edit_user' user.pk %}" method="POST">
+			<button class="edit-confirm-btn edit-confirm-back" type="submit" name="next" value="back">
+				戻る
+			</button>
+			{% for field in form %}{{ field.as_hidden }}{% endfor %}
+			{% csrf_token %}
+		</form>
+		<form class="" action="{% url 'fruit:edit_user' user.pk %}" method="POST">
+			<button class="edit-confirm-btn" type="submit" name="next" value="create">
+				変更する
+			</button>
+			{% for field in form %}{{ field.as_hidden }}{% endfor %}
+			{% csrf_token %}
+		</form>
+	</div>
+</div>
+{% endblock %}

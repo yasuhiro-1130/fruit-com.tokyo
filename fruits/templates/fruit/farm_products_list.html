@@ -1,0 +1,50 @@
+{% extends "fruit/base.html" %}
+{% block content %}
+{% load static %}
+{% bootstrap_css %}
+{% load humanize %}
+<div class="farm-product-list-container">
+	<div class="farm-product-list-outline">
+		<h2>出品果物の一覧</h2>
+		{% if object_list %}
+		<p class="">以下は<span>{{ user.farm.farm_name }}</span>の出品している果物一覧です</p>
+		<form action="{% url 'fruit:farm_products_list' %}" method="POST">
+			<table class="farm-product-list-table">
+				<tbody>
+					{% csrf_token %}
+					<tr>
+						<th>商品名</th>
+						<th>画像</th>
+						<th>出品数</th>
+						<th>編集</th>
+						<th>削除</th>
+						<th>前回更新日時</th>
+					</tr>
+					{% for product in object_list %}
+					<tr>
+						<td>{{ product.product_name }}</td>
+						<td>
+						{% if product.product_image %}
+						<img src="{{ product.small.url }}">
+						{% else %}
+						<img src="{% static 'no_image_mid.jpg' %}">
+						{% endif %}
+						</td>
+						<td>{{ product.product_stock }}</td>
+						<td><a href="{% url 'fruit:farm_product_change' product.pk %}"><span>編集</span></a></td>
+						<td><input type="checkbox" name="delete_flags" value="{{ product.pk }}"></a></td>
+						<td>{{ product.updated }}</td>
+					</tr>
+					{% endfor %}
+				</tbody>
+			</table>
+			<button id="farm-product-list-delete-button">
+				チェックを入れた果物の出品を削除する
+			</button>
+		</form>
+		{% else %}
+		<div>現在出品している果物はありません</div>
+		{% endif %}
+	</div>
+</div>
+{% endblock %}

@@ -1,0 +1,100 @@
+{% extends "fruit/base.html" %}
+{% block content %}
+{% load static %}
+{% bootstrap_css %}
+{% load humanize %}
+
+<div class="sell-items-container">
+	<div class="sell-items-containts">
+		<h1>農場基本情報を登録する</h1>
+		<div class="sell-table farm-info-table">
+			<p>内容をご確認の上、「確認画面へ進む」を押してください。</p>
+			<div class="sell-outline">
+				<div class="sell-info">
+					<form action="{% url 'fruit:farm_info_register' user.pk %}" enctype="multipart/form-data" accept-charset="UTF-8" method="POST">
+						{% csrf_token %}
+						<div class="farm_register_form_control">
+							<h3 class="">農場名(最大20字)<span>必須</span></h3>
+							{{ form.farm_name }}
+							{{ form.farm_name.errors }}
+						</div>
+						<div class="farm_register_form_control">
+							<h3 class="">農場代表者姓<span class="optional">任意</span></h3>
+							{{ form.farmrep_last_name }}
+							{{ form.farmrep_last_name.errors }}
+						</div>
+						<div class="farm_register_form_control">
+							<h3 class="">農場代表者名<span class="optional">任意</span></h3>
+							{{ form.farmrep_first_name }}
+							{{ form.farmrep_first_name.errors }}
+						</div>
+						<div class="farm_register_form_control">
+							<h3 class="">農場プロフィール画像<span class="optional">任意</span></h3>
+							{{ form.farm_image }}
+							{{ form.farm_image.errors }}
+						</div>
+						<div class="farm_register_form_control">
+							<h3 class="">農場説明(最大200字)<span class="optional">任意</span></h3>
+							{{ form.farm_description }}
+							{{ form.farm_description.errors }}
+						</div>
+						<div class="farm_register_form_control">
+							<h3 class="">農場郵便番号<span class="optional">任意</span></h3>
+							{{ form.farm_postal_code1 }}&nbsp;-&nbsp;{{ form.farm_postal_code2 }}
+							{{ form.farm_postal_code1.errors }}&nbsp;&nbsp;{{ form.farm_postal_code2.errors }}
+						</div>
+						<div class="farm_register_form_control">
+							<h3 class="">農場住所<span class="optional">任意</span></h3>
+							{{ form.farm_address1 }}
+							{{ form.farm_address1.errors }}
+						</div>
+						<div class="farm_register_form_control">
+							<h3 class="">町域・丁目・番地<span class="optional">任意</span></h3>
+							{{ form.farm_address2 }}
+							{{ form.farm_address2.errors }}
+						</div>
+						<div class="farm_register_form_control">
+							<h3 class="">ビル・マンション名・部屋番号<span class="optional">任意</span></h3>
+							{{ form.farm_address3 }}
+							{{ form.farm_address3.errors }}
+						</div>
+						<div class="farm_register_form_control">
+							<h3 class="">農場電話番号<span class="optional">任意</span></h3>
+							{{ form.farm_tel_number1 }}&nbsp;-&nbsp;{{ form.farm_tel_number2 }}&nbsp;-&nbsp;{{ form.farm_tel_number3 }}
+							{{ form.farm_tel_number1.errors }}&nbsp;&nbsp;{{ form.farm_tel_number2.errors }}&nbsp;&nbsp;{{ form.farm_tel_number3.errors }}
+						</div>
+						<div class="farm_register_form_control">
+							<h3 class="">ホームページURL<span class="optional">任意</span></h3>
+							{{ form.farm_url }}
+							{{ form.farm_url.errors }}
+						</div>
+						<div class="farm_register_form_control">
+							<h3 class="">振込先口座番号<span class="optional">任意</span></h3>
+							{{ form.bank_account }}
+							{{ form.bank_account.errors }}
+						</div>
+						<div class="farm_register_form_control">
+							<h3 class="">振込先金融機関名<span class="optional">任意</span></h3>
+							{{ form.bank_name }}
+							{{ form.bank_name.errors }}
+						</div>
+						<div class="farm_register_form_control">
+							<h3 class="">支店番号<span class="optional">任意</span></h3>
+							{{ form.bank_branch_num }}
+							{{ form.bank_branch_num.errors }}
+						</div>
+						<div class="farm_register_form_control">
+							<h3 class="">支店名<span class="optional">任意</span></h3>
+							{{ form.bank_branch_name }}
+							{{ form.bank_branch_name.errors }}
+						</div>
+						<div class="sell-submit-content">
+							<button type="submit" class="sell-submit" name="next" value="confirm">確認画面へ進む</button>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+{% endblock %}

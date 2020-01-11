@@ -1,0 +1,182 @@
+{% extends "fruit/base.html" %}
+{% block content %}
+{% load static %}
+{% bootstrap_css %}
+{% load humanize %}
+
+<div class="cart-items-container">
+	<div>
+		<h1>ショッピングカート</h1>
+		<div class="cart-table">
+			{% if user.cart.cart_items.all %}
+			<p class="cart-item-exist">ショッピングカートの中には以下の商品が入っています。</p>
+			{% else %}
+			<p class="cart-item-exist">ショッピングカートには商品が入っていません。</p>
+			{% endif %}
+			<table class="cart-items">
+				<tbody>
+					<tr>
+						{% if user.cart.cart_items.all %}
+						<th>商品</th>
+						<th>価格</th>
+						<th>数量</th>
+						<th class="cart-th-1">金額</th>
+						<th>小計</th>
+						<th>削除</th>
+						{% endif %}
+					</tr>
+					{% for cart_item in user.cart.cart_items.all %}
+					<tr>
+						<td class="table-item-name">
+							<a href="{% url 'fruit:item_detail' cart_item.product.pk %}">
+								{% if cart_item.product.product_image %}
+								<img src="{{ cart_item.product.small.url }}">
+								{% else %}
+								<img src="{% static 'no_image_mid.jpg' %}">
+								{% endif %}
+								<div class="table-content-description">
+									<div>{{ cart_item.product.product_origin }}</div>
+									<div>{{ cart_item.product.farm.farm_name }}</div>
+									<div>{{ cart_item.product.product_name }}</div>
+								</div>
+							</a>
+						</td>
+						<td><span class="price-num">{{ cart_item.product.product_price | intcomma }}</span>円<span
+								class="tax">(税込)</span></td>
+						<td class="cart-td-1">
+							<span class="price-num">単価: {{ cart_item.product.product_price | intcomma }}</span>円<span
+								class="tax">(税込)</span>
+							<div class="cart-amount-change-btns">
+								<button id="cart_minus" pk="{{ cart_item.pk }}">-</button>
+								<div name="cart_item_amount">{{ cart_item.amount }}</div>
+								<button id="cart_plus" pk="{{ cart_item.pk }}">+</button>
+							</div>
+							<span class="price-subtotal">小計: {{ cart_item.sub_total_amount | intcomma }}</span>円<span
+								class="tax">(税込)</span>
+						</td>
+						<td>
+							<div class="cart-amount-change-btns">
+								<button id="cart_minus" pk="{{ cart_item.pk }}">-</button>
+								<div name="cart_item_amount">{{ cart_item.amount }}</div>
+								<button id="cart_plus" pk="{{ cart_item.pk }}">+</button>
+							</div>
+						</td>
+						<td><span class="price-subtotal">{{ cart_item.sub_total_amount | intcomma }}</span>円<span
+								class="tax">(税込)</span></td>
+						<td><button name="delete" pk="{{ cart_item.pk }}">削除</button></td>
+					</tr>
+					{% endfor %}
+				</tbody>
+			</table>
+			<div class="total-price">
+				{% if user.cart.cart_items.all %}
+				<div class="table-total">
+					<p>ショッピングカート合計金額:</p>
+					<div><span class="total-amount">{{ user.cart.total_amount | intcomma }}</span>円<span
+							class="tax">(税込)</span></div>
+				</div>
+				{% endif%}
+			</div>
+		</div>
+		{% if user.cart.cart_items.all %}
+		<div class="go-confirm-page">
+			<a id="go-confirm" href="{% url 'fruit:cart_confirm' user.cart.pk %}">ご注文内容確認画面へ進む</a>
+		</div>
+		{% endif%}
+	</div>
+</div>
+{% endblock %}
+{% block scripts %}
+<!-- カート数量変更 -->
+<script>
+	function call_plus_amount(_pk) {
+		return $.ajax({
+			url: '{% url "fruit:plus_cart_item" %}',
+			type: 'POST',
+			dataType: 'json',
+			data: {
+				cart_item_pk: _pk
+			}
+		});
+	}
+	$(function () {
+		var $plus_button = $('button[id="cart_plus"]');
+
+		$plus_button.on('click', function () {
+			var cart_item_pk = $(this).attr('pk');
+			call_plus_amount(cart_item_pk)
+				.done((data) => {
+					if (data.success) {
+						location.reload();
+						return;
+					}
+					alert(data.error);
+				})
+				.fail((ata, textStatus, xhr) => {
+					alert(xhr);
+				});
+		});
+	})
+
+	function call_minus_amount(_pk) {
+		return $.ajax({
+			url: '{% url "fruit:minus_cart_item" %}',
+			type: 'POST',
+			dataType: 'json',
+			data: {
+				cart_item_pk: _pk
+			}
+		});
+	}
+	$(function () {
+		var $plus_button = $('button[id="cart_minus"]');
+
+		$plus_button.on('click', function () {
+			var cart_item_pk = $(this).attr('pk');
+			call_minus_amount(cart_item_pk)
+				.done((data) => {
+					if (data.success) {
+						location.reload();
+						return;
+					}
+					alert(data.error);
+				})
+				.fail((ata, textStatus, xhr) => {
+					alert(xhr);
+				});
+		});
+	})
+</script>
+
+<!-- カートアイテム削除 -->
+<script>
+	function call_delete_item(_pk) {
+		return $.ajax({
+			url: '{% url "fruit:delete_cart_item" %}',
+			type: 'POST',
+			dataType: 'json',
+			data: {
+				cart_item_pk: _pk
+			}
+		});
+	}
+	$(function () {
+		var $delete_button = $('button[name="delete"]');
+
+		$delete_button.on('click', function () {
+			var cart_item_pk = $(this).attr('pk');
+			call_delete_item(cart_item_pk)
+				.done((data) => {
+					if (data.success) {
+						location.reload();
+						return;
+					}
+					alert(data.error);
+				})
+				.fail((ata, textStatus, xhr) => {
+					alert(xhr);
+				});
+		});
+	})
+</script>
+{% endblock %}
