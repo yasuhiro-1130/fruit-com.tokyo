@@ -21,7 +21,7 @@ https://fruit-com.tokyo/
 |ショッピングカート画面|ショッピングカート確認画面|
 |:--:|:--:|
 |<img src="https://user-images.githubusercontent.com/38691313/72247691-c9cdd600-3638-11ea-8593-c834b8c4c016.png" width="400px">|<img src="https://user-images.githubusercontent.com/38691313/72247701-ccc8c680-3638-11ea-8e60-bf2dd988a358.png" width="400px">|
-|数量変更機能, カート内アイテム削除機能(Ajax)|カート内アイテム確認機能|
+|数量変更機能, カート内アイテム削除機能(Ajax)|カート内アイテム確認機能, 注文完了時メール送信機能|
 
 |注文履歴画面|クレジット入力画面(Stripe)|
 |:--:|:--:|
@@ -36,7 +36,7 @@ https://fruit-com.tokyo/
 |新規登録画面|ログイン画面|
 |:--:|:--:|
 |<img src="https://user-images.githubusercontent.com/38691313/72249511-deac6880-363c-11ea-8b99-be0dbcb3cfdd.png" width="400px">|<img src="https://user-images.githubusercontent.com/38691313/72249503-dc4a0e80-363c-11ea-8606-2f510c3ad988.png" width="400px">|
-|新規ユーザー作成機能|ログイン機能, パスワード再発行機能|
+|新規ユーザー作成機能, 登録時メール送信機能|ログイン機能, パスワード再発行機能|
 
 ## 使用技術
 ### フロント  
