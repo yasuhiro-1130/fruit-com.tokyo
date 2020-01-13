@@ -11,7 +11,7 @@ https://fruit-com.tokyo/
 |トップ一覧画面|商品個別画面|
 |:--:|:--:|
 |<img src="https://user-images.githubusercontent.com/38691313/72244457-a7848a00-3631-11ea-9411-669b1cb1dc27.png" width="400px">|<img src="https://user-images.githubusercontent.com/38691313/72246174-845bd980-3635-11ea-833e-5c8e1552f069.png" width="400px">|
-|検索機能|コメント入力・削除・編集機能, 商品評価機能|
+|検索機能, ページネーション機能|コメント入力・削除・編集機能, 商品評価機能|
 
 |果物出品画面|果物出品/確認変更画面|
 |:--:|:--:|
