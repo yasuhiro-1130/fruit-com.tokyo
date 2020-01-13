@@ -64,6 +64,7 @@ https://fruit-com.tokyo/
   - IAM  
   - CloudWatch  
   - Certificate Manager  
+  - ALB
   - ECR  
   - ECS  
   - EC2(RDS内調査用の踏み台サーバーとして)  
