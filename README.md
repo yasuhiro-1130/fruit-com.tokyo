@@ -62,6 +62,6 @@ Github
 お名前ドットコム
 
 # クラウドアーキテクチャ
-![AWS Integration ap-northeast-1 (9)](https://user-images.githubusercontent.com/38691313/72236129-e6f2ac80-3618-11ea-8816-32b70524a7c7.png)
+<img width="994" alt="スクリーンショット 2020-01-13 16 17 15" src="https://user-images.githubusercontent.com/38691313/72238139-40120e80-3620-11ea-9ae4-f5bd1edc6a9a.png">
 
 # UML図
