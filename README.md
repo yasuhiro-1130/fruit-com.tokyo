@@ -92,6 +92,6 @@ https://fruit-com.tokyo/
 ## クラウドアーキテクチャ
 <img width="994" alt="スクリーンショット 2020-01-13 16 17 15" src="https://user-images.githubusercontent.com/38691313/72238139-40120e80-3620-11ea-9ae4-f5bd1edc6a9a.png">
 
-## データベース図
-
+## ER図
+<img width="897" alt="スクリーンショット 2020-01-14 16 59 00" src="https://user-images.githubusercontent.com/38691313/72324886-44f1c380-36ef-11ea-9ef9-bf3b50b56b56.png">
 
