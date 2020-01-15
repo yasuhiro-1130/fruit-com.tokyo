@@ -47,8 +47,8 @@ https://fruit-com.tokyo/
 - スマホ対応(レスポンシブデザイン)
 
 ### バックエンド  
-- python  3.7  
-- django  2.2  
+- Python  3.7  
+- Django  2.2  
 
 ### インフラ  
 - docker  
