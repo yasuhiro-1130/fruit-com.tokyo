@@ -5,16 +5,13 @@ WORKDIR /usr/src/fruits
 ENV PYTHONDONTWRITEBYTECODE 1  
 ENV PYTHONUNBUFFERED 1  
 
-# psycopg2のインストール  
 RUN apk update \
 	&& apk add --virtual build-deps gcc python3-dev musl-dev \
 	&& apk add postgresql-dev \
 	&& pip install psycopg2 \
 	&& apk del build-deps \
-# pillowインストールのため追加
 	&& apk add --no-cache jpeg-dev zlib-dev
 
-# pillowインストールのため追加
 RUN apk add --no-cache --virtual .build-deps build-base linux-headers
 
 RUN pip install --upgrade pip 

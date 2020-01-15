@@ -1,21 +1,15 @@
 from django.shortcuts import render, redirect
 from django.views.generic import (
-    ListView,
-    DetailView,
-    CreateView,
-    TemplateView,
-    RedirectView,
-    UpdateView,
-    DeleteView,
-    FormView)
+    ListView, DetailView, CreateView,
+    TemplateView, RedirectView, UpdateView,
+    DeleteView, FormView
+	)
 from django.contrib.auth.views import (
-    LoginView,
-    PasswordChangeView,
-    PasswordChangeDoneView,
-    PasswordResetView,
-    PasswordResetDoneView,
-    PasswordResetConfirmView,
-    PasswordResetCompleteView)
+    LoginView, PasswordChangeView,
+    PasswordChangeDoneView, PasswordResetView,
+    PasswordResetDoneView, PasswordResetConfirmView,
+    PasswordResetCompleteView
+	)
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.views.generic.edit import ModelFormMixin
 
@@ -489,10 +483,8 @@ class ShoppingCartConfirm(LoginRequiredMixin, OnlyTheCartMixin, DetailView):
             '' or request.user.tel_number_dlv3 == '' or request.user.address_dlv1 ==\
                 '' or request.user.address_dlv2 == '':
             messages.error(self.request, "お届け先住所・郵便番号・電話番号を入力して下さい")
-            return redirect(
-                reverse_lazy(
-                    'fruit:edit_user', kwargs={
-                        'pk': request.user.pk}))
+            return redirect(reverse_lazy('fruit:edit_user', 
+			                              kwargs={'pk': request.user.pk}))
         else:
             return super().get(request, *args, **kwargs)
 
@@ -596,18 +588,15 @@ class OrderHistory(LoginRequiredMixin, ListView):
 
     def get_queryset(self):
         return Order.objects.filter(
-            user=self.request.user).order_by('-created_at')
+               user=self.request.user).order_by('-created_at')
 
 
 class FarmInfoRedirect(LoginRequiredMixin, RedirectView):
     def get(self, request, *args, **kwargs):
         messages.warning(self.request, "出品前に農場基本情報の登録が必要です")
-        return redirect(
-            reverse_lazy(
-                'fruit:farm_info_register',
-                kwargs={
-                    'pk': request.user.pk}))
-
+        return redirect(reverse_lazy('fruit:farm_info_register', 
+		                              kwargs={'pk': request.user.pk}))
+        
 
 class FarmInfoRegister(LoginRequiredMixin, OnlyTheUserMixin, CreateView):
     form_class = FarmInfoRegisterChangeForm
@@ -622,10 +611,8 @@ class FarmInfoRegister(LoginRequiredMixin, OnlyTheUserMixin, CreateView):
                 temp_image = default_storage.save(
                     'temp_images/' + farm_image.name, farm_image)
                 self.request.session['temp_farm_image_path'] = temp_image
-            return render(
-                self.request,
-                'fruit/farm_info_register_confirm.html',
-                ctx)
+            return render(self.request, 
+			              'fruit/farm_info_register_confirm.html', ctx)
 
         if self.request.POST.get('next', '') == 'back':
             temp_image = self.request.session.pop('temp_farm_image_path', '')
@@ -684,10 +671,8 @@ class FarmInfoChange(LoginRequiredMixin, OnlyTheFarmMixin, UpdateView):
                 temp_image = default_storage.save(
                     'temp_images/' + farm_image.name, farm_image)
                 self.request.session['temp_farm_image_path'] = temp_image
-            return render(
-                self.request,
-                'fruit/farm_info_change_confirm.html',
-                ctx)
+            return render(self.request, 
+			              'fruit/farm_info_change_confirm.html', ctx)
 
         if self.request.POST.get('next', '') == 'back':
             temp_image = self.request.session.pop('temp_farm_image_path', '')
@@ -733,9 +718,8 @@ class FarmInfoDelete(LoginRequiredMixin, OnlyTheFarmMixin, DeleteView):
 
     def get_success_url(self, **kwargs):
         messages.success(self.request, "農場基本情報の削除が完了しました")
-        return reverse(
-            'fruit:farm_info_page', kwargs={
-                'pk': self.request.user.pk})
+        return reverse('fruit:farm_info_page', 
+		                kwargs={'pk': self.request.user.pk})
 
 
 class FarmProductRegister(LoginRequiredMixin, OnlyTheFarmMixin, CreateView):
@@ -752,19 +736,15 @@ class FarmProductRegister(LoginRequiredMixin, OnlyTheFarmMixin, CreateView):
                 temp_image = default_storage.save(
                     'temp_images/' + product_image.name, product_image)
                 self.request.session['temp_image_path'] = temp_image
-            return render(
-                self.request,
-                'fruit/farm_product_register_confirm.html',
-                ctx)
+            return render(self.request, 
+			              'fruit/farm_product_register_confirm.html', ctx)
 
         if self.request.POST.get('next', '') == 'back':
             temp_image = self.request.session.pop('temp_image_path', '')
             if temp_image:
                 default_storage.delete(temp_image)
-            return render(
-                self.request,
-                'fruit/farm_product_register.html',
-                ctx)
+            return render(self.request, 'fruit/farm_product_register.html', 
+			              ctx)
 
         if self.request.POST.get('next', '') == 'create':
             user = self.request.user
@@ -784,11 +764,8 @@ class FarmProductRegister(LoginRequiredMixin, OnlyTheFarmMixin, CreateView):
             return super().form_valid(form)
 
         else:
-            return redirect(
-                reverse_lazy(
-                    'fruit:farm_info_page',
-                    kwargs={
-                        'pk': self.request.user.pk}))
+            return redirect(reverse_lazy('fruit:farm_info_page', 
+			                kwargs={'pk': self.request.user.pk}))
 
     def form_invalid(self, form):
         messages.warning(self.request, "入力に誤りがあります")
@@ -798,9 +775,8 @@ class FarmProductRegister(LoginRequiredMixin, OnlyTheFarmMixin, CreateView):
 
     def get_success_url(self, **kwargs):
         messages.success(self.request, "出品果物の登録が完了しました")
-        return reverse(
-            'fruit:farm_info_page', kwargs={
-                'pk': self.request.user.pk})
+        return reverse('fruit:farm_info_page', 
+		                kwargs={'pk': self.request.user.pk})
 
 
 class FarmProductChange(LoginRequiredMixin, UpdateView):
@@ -831,10 +807,8 @@ class FarmProductChange(LoginRequiredMixin, UpdateView):
                 temp_image = default_storage.save(
                     'temp_images/' + product_image.name, product_image)
                 self.request.session['temp_image_path'] = temp_image
-            return render(
-                self.request,
-                'fruit/farm_product_change_confirm.html',
-                ctx)
+            return render(self.request, 
+			              'fruit/farm_product_change_confirm.html',ctx)
 
         if self.request.POST.get('next', '') == 'back':
             temp_image = self.request.session.pop('temp_image_path', '')
@@ -869,9 +843,8 @@ class FarmProductChange(LoginRequiredMixin, UpdateView):
                 farm_product.save()
             return super().form_valid(form)
         else:
-            return redirect(
-                reverse_lazy('fruit:farm_info_page'), kwargs={
-                    'pk': self.request.user.pk})
+            return redirect(reverse_lazy('fruit:farm_info_page'),
+			                kwargs={'pk': self.request.user.pk})
 
     def form_invalid(self, form):
         messages.warning(self.request, "入力に誤りがあります")
@@ -881,9 +854,8 @@ class FarmProductChange(LoginRequiredMixin, UpdateView):
 
     def get_success_url(self, **kwargs):
         messages.success(self.request, "出品果物の変更が完了しました")
-        return reverse(
-            'fruit:farm_info_page', kwargs={
-                'pk': self.request.user.pk})
+        return reverse('fruit:farm_info_page',
+		                kwargs={'pk': self.request.user.pk})
 
 
 class FarmProductsList(LoginRequiredMixin, ListView):
@@ -910,11 +882,8 @@ def FarmProductsDelete(request):
     if delete_farm_products_list:
         FarmProduct.objects.filter(pk__in=delete_farm_products_list).delete()
         messages.success(request, "削除が完了しました")
-        return redirect(
-            reverse_lazy(
-                'fruit:farm_info_page',
-                kwargs={
-                    'pk': request.user.pk}))
+        return redirect(reverse_lazy('fruit:farm_info_page', 
+		                kwargs={'pk': request.user.pk}))
     else:
         messages.error(request, "もう一度やり直して下さい")
         return redirect(reverse_lazy('fruit:farm_products_list'))
